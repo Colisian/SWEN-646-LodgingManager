@@ -8,7 +8,6 @@ public class HouseDetail extends RoomDetail {
     private Address address;
 
 
-
     public HouseDetail(int numberOfFloors, Address address, String reservationNumber, String accountNumber, int nights, Date checkIn, Date checkOut,
                        int bedCount, int squareFootage, double bathroomCount, int bedRoomCount,String roomStatus, String roomType){
         super(reservationNumber, accountNumber, nights, checkIn, checkOut,
@@ -57,4 +56,7 @@ public class HouseDetail extends RoomDetail {
         return address;
     }
 
+    public void setAddress(Address address) {
+        this.address = address;
+    }
 }

@@ -61,4 +61,8 @@ public class HotelDetail extends RoomDetail{
     public Address getAddress(){
         return address;
     }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
 }

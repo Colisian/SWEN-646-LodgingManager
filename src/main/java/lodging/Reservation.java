@@ -14,11 +14,9 @@ public abstract class Reservation implements Cloneable {
 
     protected String accountNumber;
 
-
     public Reservation(String reservationNumber, String accountNumber){
 
     }
-
     //format and return object's data in JSON format
     public String toString(){
 
@@ -65,8 +63,15 @@ public abstract class Reservation implements Cloneable {
         return reservationNumber;
     }
 
+    public void setReservationNumber(String reservationNumber) {
+        this.reservationNumber = reservationNumber;
+    }
+
     public String getAccountNumber() {
         return accountNumber;
     }
 
+    public void setAccountNumber(String accountNumber) {
+        this.accountNumber = accountNumber;
+    }
 }

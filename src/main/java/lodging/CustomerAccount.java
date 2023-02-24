@@ -5,42 +5,17 @@ import java.util.List;
 
 public class CustomerAccount {
     private String accountName;
-    public String getAccountName() {
-        return accountName;
-    }
-    public void setAccountName(String accountName) {
-        this.accountName = accountName;
-    }
-    private Address address;
-    public Address getAddress() {
-        return address;
-    }
 
-    private String accountNumber; //The account number value can not be edited so only get mehod
-    public String getAccountNumber() {
-        return accountNumber;
-    }
+    private Address address;
+
+    private String accountNumber;
 
     private String phoneNumber;
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
+
 
     private String emailAddress;
-    public String getEmailAddress() {
-        return emailAddress;
-    }
-    public void setEmailAddress(String emailAddress){
-        this.emailAddress = emailAddress;
-    }
 
     private String reservationNumber;
-    public String getReservationNumber() {
-        return reservationNumber;
-    }
 
     private List<Reservation> reservationList = new ArrayList<>();
 
@@ -104,4 +79,46 @@ public class CustomerAccount {
     public CustomerAccount clone(String line) throws CloneNotSupportedException{
         return (CustomerAccount) super.clone();
     }
+    public String getAccountName() {
+        return accountName;
+    }
+    public void setAccountName(String accountName) {
+        this.accountName = accountName;
+    }
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+
+    public void setAccountNumber(String accountNumber) {
+        this.accountNumber = accountNumber;
+    }
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getEmailAddress() {
+        return emailAddress;
+    }
+    public void setEmailAddress(String emailAddress){
+        this.emailAddress = emailAddress;
+    }
+
+    public void setReservationNumber(String reservationNumber) {
+        this.reservationNumber = reservationNumber;
+    }
+    public String getReservationNumber() {
+        return reservationNumber;
+    }
+
 }

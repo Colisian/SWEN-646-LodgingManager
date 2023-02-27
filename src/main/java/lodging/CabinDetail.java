@@ -5,7 +5,6 @@ import java.util.Date;
 public class CabinDetail extends RoomDetail {
 
     private boolean containsKitchen; //Does the cabin contain a kitchen?
-
     private boolean containsLoft; //Does the cabin contain a Loft?
     private Address address;
 

@@ -10,9 +10,9 @@ public abstract class Reservation implements Cloneable {
 
     }
     protected String reservationNumber;
-
-
     protected String accountNumber;
+
+    protected float basePrice = 120.00f;
 
     public Reservation(String reservationNumber, String accountNumber){
 

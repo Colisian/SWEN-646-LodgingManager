@@ -1,7 +1,14 @@
 package lodging;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class CustomerAccount {
     private String accountName;
@@ -10,12 +17,15 @@ public class CustomerAccount {
 
     private String accountNumber;
 
-    private String phoneNumber;
+    private String newAccountNumber;
 
+    private String phoneNumber;
 
     private String emailAddress;
 
     private String reservationNumber;
+
+    private final  String filePath = "acc";
 
     private List<Reservation> reservationList = new ArrayList<>();
 
@@ -27,17 +37,35 @@ public class CustomerAccount {
             }
         } return false;
     }
-    public void addReservation(Reservation logdingReservation){
+    public void addReservation(Reservation lodgingReservation){
         //check if reservation exists
-        if(reservationExists(logdingReservation.getReservationNumber())){
-            throw new DuplicateObjectException("Reservation", logdingReservation.getReservationNumber());
+        if(reservationExists(lodgingReservation.getReservationNumber())){
+            throw new DuplicateObjectException("Reservation", lodgingReservation.getReservationNumber());
         }
         //add reservation
     }
 
     public CustomerAccount(String accountName, Address address, String accountNumber,
-                           String phoneNumber, String emailAddress, String reservationNumber){
+                           String phoneNumber, String emailAddress, String reservationNumber) throws JSONException, IOException {
         //validate parameters
+        Random rnd = new Random();
+        int number = rnd.nextInt(99999999);
+        newAccountNumber = String.valueOf(number);
+        String newAccountPath = filePath + "A" + newAccountNumber;
+        new File(newAccountPath).mkdir();
+
+        JSONObject putInFile = new JSONObject();
+        putInFile.put("address",address);
+        putInFile.put("phoneNumber",phoneNumber);
+        putInFile.put("emailAddress",emailAddress);
+
+        File accountInfo = new File(newAccountPath + "-" + "accountInfo.json");
+        accountInfo.createNewFile();
+        FileWriter writer = new FileWriter(accountInfo.getAbsolutePath());
+        writer.write(putInFile.toString());
+        writer.close();
+        System.out.println("New Account created: A" + newAccountNumber);
+
     }
 
     public CustomerAccount(String line){ //Overloading method
@@ -45,7 +73,7 @@ public class CustomerAccount {
     }
 
     public static CustomerAccount loadFromFile(String fileName, String accountNumber) throws IllegalLoadException {
-        //File file = new File(fileName);
+        File file = new File(fileName);
         try {
             // code to load account from file
         } catch (RuntimeException e) {
@@ -121,4 +149,16 @@ public class CustomerAccount {
         return reservationNumber;
     }
 
+    public String getNewAccountNumber() {
+        return newAccountNumber;
+    }
+    public String getFilePath() {
+        return filePath;
+    }
+    public List<Reservation> getReservationList() {
+        return reservationList;
+    }
+    public void setReservationList(List<Reservation> reservationList) {
+        this.reservationList = reservationList;
+    }
 }

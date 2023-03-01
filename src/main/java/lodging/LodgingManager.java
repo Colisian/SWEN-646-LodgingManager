@@ -1,7 +1,7 @@
 package lodging;
 
 
-import java.io.FileNotFoundException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,6 +10,8 @@ public class LodgingManager {
     private List<CustomerAccount> customerAccounts = new ArrayList<>();
 
     private List<Reservation> lodgingReservations = new ArrayList<>();
+
+
 
     private Reservation lodgingReservation;
 

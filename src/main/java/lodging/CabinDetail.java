@@ -75,18 +75,18 @@ public class CabinDetail extends RoomDetail {
     public String toString(){
         //Return cabin details in JSON format
         return "<Cabin>" + "\n" +
-                "<accountNumber>" + accountNumber + "</accountNumber>" + "\n" +
-                "<reservationNumber>" + reservationNumber + "</reservationNumber>" + "\n" +
-                "<Address>" + address + "</Address>" + "\n" +
-                "<checkIn>" + checkIn + "</checkIn>" + "\n" +
-                "<checkOut>" + checkOut + "</checkOut>" + "\n" +
-                "<bedCount>" + bedCount + "</bedCount>" + "\n" +
-                "<sqFt>" + squareFootage + "</sqFt>" + "\n" +
-                "<bathroomCount>" + bathroomCount + "</bathroomCount>" + "\n" +
-                "<bedroomCount>" + bedRoomCount + "</bedroomCount>" + "\n" +
-                "<containsKitchen>" + containsKitchen + "</containsKitchen>" + "\n" +
-                "<containsLoft>" + containsLoft + "</containsLoft>" + "\n" +
-                "<roomStatus>" + roomStatus + "</roomStatus>" + "\n" +
+                "<accountNumber>" + accountNumber + "</accountNumber>" +
+                "<reservationNumber>" + reservationNumber + "</reservationNumber>" +
+                "<Address>" + address + "</Address>" +
+                "<checkIn>" + checkIn + "</checkIn>" +
+                "<checkOut>" + checkOut + "</checkOut>" +
+                "<bedCount>" + bedCount + "</bedCount>" +
+                "<sqFt>" + squareFootage + "</sqFt>" +
+                "<bathroomCount>" + bathroomCount + "</bathroomCount>" +
+                "<bedroomCount>" + bedRoomCount + "</bedroomCount>" +
+                "<containsKitchen>" + containsKitchen + "</containsKitchen>" +
+                "<containsLoft>" + containsLoft + "</containsLoft>" +
+                "<roomStatus>" + roomStatus + "</roomStatus>" +
                 "</Cabin>";
     }
 

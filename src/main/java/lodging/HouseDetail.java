@@ -27,8 +27,8 @@ public class HouseDetail extends RoomDetail {
         //Assign values to House specific attributes
 
         Random random = new Random();
-        int number = random.nextInt(99999999);
-        generateReservationNumber = "HOU" + String.valueOf(number);
+        int resNumber = random.nextInt(99999999);
+        generateReservationNumber = "HOU" + String.valueOf(resNumber);
 
         String accountPath = "Local Drive (C:)" + accountNumber;
         JSONObject putInFile = new JSONObject();
@@ -56,18 +56,18 @@ public class HouseDetail extends RoomDetail {
     public String toString(){
 
         //return house details in JSON format
-        return "<House>" + "\n" +
-                "<accountNumber>" + accountNumber + "</accountNumber>" + "\n" +
-                "<reservationNumber>" + reservationNumber + "</reservationNumber>" + "\n" +
-                "<Address>" + address + "</Address>" + "\n" +
-                "<checkIn>" + checkIn + "</checkIn>" + "\n" +
-                "<checkOut>" + checkOut + "</checkOut>" + "\n" +
-                "<bedCount>" + bedCount + "</bedCount>" + "\n" +
-                "<sqFt>" + squareFootage + "</sqFt>" + "\n" +
-                "<bathroomCount>" + bathroomCount + "</bathroomCount>" + "\n" +
-                "<bedroomCount>" + bedRoomCount + "</bedroomCount>" + "\n" +
-                "<containsKitchen>" + numberOfFloors + "</containsKitchen>" + "\n" +
-                "<roomStatus>" + roomStatus + "</roomStatus>" + "\n" +
+        return "<House>" +
+                "<accountNumber>" + accountNumber + "</accountNumber>" +
+                "<reservationNumber>" + reservationNumber + "</reservationNumber>" +
+                "<Address>" + address + "</Address>" +
+                "<checkIn>" + checkIn + "</checkIn>" +
+                "<checkOut>" + checkOut + "</checkOut>" +
+                "<bedCount>" + bedCount + "</bedCount>" +
+                "<sqFt>" + squareFootage + "</sqFt>" +
+                "<bathroomCount>" + bathroomCount + "</bathroomCount>" +
+                "<bedroomCount>" + bedRoomCount + "</bedroomCount>" +
+                "<containsKitchen>" + numberOfFloors + "</containsKitchen>" +
+                "<roomStatus>" + roomStatus + "</roomStatus>" +
                 "</House>";
     }
 

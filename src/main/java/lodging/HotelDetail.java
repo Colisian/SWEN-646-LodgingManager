@@ -12,7 +12,7 @@ public class HotelDetail extends RoomDetail{
     public HotelDetail(boolean containsKitchenette, Address address, String reservationNumber, String accountNumber, int nights, Date checkIn, Date checkOut,
                        int bedCount, int squareFootage, double bathroomCount,String roomStatus, String roomType, int bedRoomCount){
         super(reservationNumber, accountNumber, nights, checkIn, checkOut,
-                bedCount, squareFootage, bathroomCount, bedRoomCount ,roomStatus, roomType);
+                bedCount, squareFootage, bathroomCount, bedRoomCount ,roomStatus);
 
         if(bedRoomCount > 1 || bathroomCount > 1 || bedCount != 2){
             throw new IllegalArgumentException("Hotels only have single bedrooom, single bathroom and two bed options");

@@ -9,9 +9,9 @@ public class HouseDetail extends RoomDetail {
 
 
     public HouseDetail(int numberOfFloors, Address address, String reservationNumber, String accountNumber, int nights, Date checkIn, Date checkOut,
-                       int bedCount, int squareFootage, double bathroomCount, int bedRoomCount,String roomStatus, String roomType){
+                       int bedCount, int squareFootage, double bathroomCount, int bedRoomCount,String roomStatus){
         super(reservationNumber, accountNumber, nights, checkIn, checkOut,
-                bedCount, squareFootage, bathroomCount, bedRoomCount,roomStatus, roomType);
+                bedCount, squareFootage, bathroomCount, bedRoomCount,roomStatus);
 
         //call parent constructor from RoomDetail
         //Validate parameters

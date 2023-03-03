@@ -2,7 +2,7 @@ package lodging;
 
 import java.util.Date;
 
-abstract public class RoomDetail extends Reservation implements Cloneable{
+abstract public class RoomDetail extends Reservation{
 
     protected int nights;
 
@@ -25,7 +25,7 @@ abstract public class RoomDetail extends Reservation implements Cloneable{
 
     //Above parameters have set and get methods so the appropriate lodging that fits the criteria of the customer can be identified
     public RoomDetail(String reservationNumber, String accountNumber, int nights, Date checkIn, Date checkOut,
-                      int bedCount, int squareFootage, double bathroomCount, int bedRoomCount, String roomStatus, String roomType){
+                      int bedCount, int squareFootage, double bathroomCount, int bedRoomCount, String roomStatus){
         super(reservationNumber, accountNumber);
 
         //Calls from parent constructor in Reservation class

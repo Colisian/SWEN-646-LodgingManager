@@ -25,7 +25,7 @@ public class CustomerAccount {
 
     private String reservationNumber;
 
-    private final  String filePath = "acc";
+    private final  String filePath = "Local Disk (C:)";
 
     private List<Reservation> reservationList = new ArrayList<>();
 

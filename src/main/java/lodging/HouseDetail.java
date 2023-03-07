@@ -53,6 +53,10 @@ public class HouseDetail extends RoomDetail {
         System.out.println("House Reservation Number: " + generateReservationNumber);
     }
 
+    public HouseDetail(String reservationFile) {
+
+    }
+
 
     public String toString(){
 

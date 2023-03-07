@@ -8,6 +8,10 @@ public class Address {
 
     public Address(String street, String city, String state, String zipCode){
         //Assign values to attributes
+        this.city = city;
+        this.street = street;
+        this.zipCode = zipCode;
+        this.state = state;
     }
 
 

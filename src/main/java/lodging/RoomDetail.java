@@ -36,6 +36,10 @@ abstract public class RoomDetail extends Reservation{
         super(line);
     }
 
+    public RoomDetail() {
+        super();
+    }
+
     //format and return object data in JSON
     public String toString(){
         return null;

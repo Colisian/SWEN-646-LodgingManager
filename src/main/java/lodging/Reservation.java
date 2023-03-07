@@ -24,7 +24,7 @@ public abstract class Reservation implements Cloneable {
     }
 
     //calculate and return total price of the reservation
-    public float calculatePrice(){
+    public float calculateBasePrice(){
         return 0.0f;
     }
 

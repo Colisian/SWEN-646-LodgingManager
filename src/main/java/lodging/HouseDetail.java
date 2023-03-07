@@ -3,6 +3,7 @@ package lodging;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -46,7 +47,7 @@ public class HouseDetail extends RoomDetail {
 
         File accountInfo = new File(accountPath + "|" + generateReservationNumber + ".json");
         accountInfo.createNewFile();
-        FileWriter writer = new FileWriter(accountInfo.getAbsolutePath());
+        BufferedWriter writer = new BufferedWriter( new FileWriter(accountInfo.getAbsolutePath()));
         writer.write(putInFile.toString());
         writer.close();
         System.out.println("House Reservation Number: " + generateReservationNumber);

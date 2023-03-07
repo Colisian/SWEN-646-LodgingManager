@@ -1,11 +1,10 @@
 package lodging;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.Scanner;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -61,7 +60,7 @@ public class CustomerAccount {
 
         File accountInfo = new File(newAccountPath + "-" + "accountInfo.json");
         accountInfo.createNewFile();
-        FileWriter writer = new FileWriter(accountInfo.getAbsolutePath());
+        BufferedWriter writer = new BufferedWriter( new FileWriter(accountInfo.getAbsolutePath()));
         writer.write(putInFile.toString());
         writer.close();
         System.out.println("New Account created: A" + newAccountNumber);
@@ -73,11 +72,15 @@ public class CustomerAccount {
     }
 
     public static CustomerAccount loadFromFile(String fileName, String accountNumber) throws IllegalLoadException {
-        File file = new File(fileName);
         try {
-            // code to load account from file
-        } catch (RuntimeException e) {
-            throw new IllegalLoadException("Account", "accounts.txt", "account number");
+            File file = new File(fileName);
+            Scanner scanner = new Scanner(file);
+            while (scanner.hasNextLine()){
+                String line = scanner.nextLine();
+            }
+            scanner.close();
+        } catch (FileNotFoundException e) {
+            throw new IllegalLoadException("Account", "accounts.json", "account number");
         }
         return null;
     }

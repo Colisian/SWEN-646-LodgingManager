@@ -7,7 +7,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class CustomerAccount {
-    private String accountName;
+
 
     private Address address;
 
@@ -97,7 +97,7 @@ public class CustomerAccount {
 
             //int accountNameOpenTagPos = line.indexOf("<>")
         } catch (Exception e) {
-            throw new IllegalLoadException(directoryPath, accountName, "Account ID");
+            throw new IllegalLoadException(directoryPath, accountNumber, "Account ID");
         }
 
     }
@@ -144,7 +144,7 @@ public class CustomerAccount {
 
     //All parameters outside of reservation number and account number can be edited at any time.
     public void editAccount(CustomerAccount customerAccount){
-        this.accountName = customerAccount.accountName;
+        this.accountNumber = customerAccount.accountNumber;
         this.emailAddress = customerAccount.emailAddress;
         this.address = customerAccount.address;
         this.reservationList = customerAccount.reservationList;
@@ -237,12 +237,7 @@ public class CustomerAccount {
     public CustomerAccount clone(String line) throws CloneNotSupportedException{
         return (CustomerAccount) super.clone();
     }
-    public String getAccountName() {
-        return accountName;
-    }
-    public void setAccountName(String accountName) {
-        this.accountName = accountName;
-    }
+
     public Address getAddress() {
         return address;
     }

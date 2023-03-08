@@ -3,10 +3,12 @@ package lodging;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Date;
 import java.util.Random;
+import java.util.Scanner;
 
 public class HotelDetail extends RoomDetail{
 
@@ -21,7 +23,7 @@ public class HotelDetail extends RoomDetail{
         super(reservationNumber, accountNumber, nights, checkIn, checkOut,
                 bedCount, squareFootage, bathroomCount, bedRoomCount ,roomStatus);
 
-        if(bedRoomCount > 1 || bathroomCount > 1 || bedCount != 2){
+        if(bedRoomCount > 1 || bathroomCount > 1 || bedCount != 2 ){
             throw new IllegalArgumentException("Hotels only have single bedrooom, single bathroom and two bed options");
         }
 
@@ -54,8 +56,19 @@ public class HotelDetail extends RoomDetail{
         System.out.println("Hotel Reservation Number: " + generateReservationNumber);
     }
 
-    public HotelDetail(String line){ //Overloading to parse and extract separate parameters from above constructor
-        super(line);
+    public HotelDetail(String fileName){ //Overloading to parse and extract separate parameters from above constructor
+        super(fileName);
+
+        String line;
+        Scanner sc;
+        try {
+            sc = new Scanner(new File(fileName));
+            line = sc.nextLine();
+            sc.close();
+        } catch (FileNotFoundException e) {
+            throw new IllegalLoadException(fileName, accountNumber, "Hotel Reservation");
+        }
+        containsKitchenette = Boolean.parseBoolean(line.substring(line.indexOf("<containsKitchenette>") + 16, line.indexOf("</containsKitchenette>")));
 
     }
 

@@ -23,7 +23,7 @@ public class CustomerAccount {
 
     private final  String filePath = "Local Disk (C:)";
 
-    private List<Reservation> reservationList = new ArrayList<>();
+    private List<ReservationDetail> reservationList = new ArrayList<>();
 
     //Checks each reservation that is associated with the customer account
 
@@ -54,13 +54,13 @@ public class CustomerAccount {
         this.address = mailingAddress;
         this.phoneNumber = phoneNumber;
         this.emailAddress = email;
-        this.reservationList = new Vector<Reservation>();
+        this.reservationList = new Vector<ReservationDetail>();
 
     }
 
     public CustomerAccount(String directoryPath){ //Overloading method
         try {
-            reservationList = new ArrayList<Reservation>();
+            reservationList = new ArrayList<ReservationDetail>();
             File reservation;
             File dir = new File(directoryPath);
             String [] reservationFiles = null;
@@ -78,14 +78,14 @@ public class CustomerAccount {
                         reservationFile = reservationFiles[j];
                         reservationRoomType = reservationFile.substring(0,3);
                         if(reservationRoomType.equals("HOU")){
-                            reservationList.add((Reservation) new HouseDetail(reservationFile));
+                            reservationList.add((ReservationDetail) new HouseDetail(reservationFile));
                         }
                         else if(reservationRoomType.equals("HOT")){
-                            reservationList.add((Reservation) new HotelDetail(reservationFile));
+                            reservationList.add((ReservationDetail) new HotelDetail(reservationFile));
                         }
 
                         else {
-                            reservationList.add((Reservation) new CabinDetail(reservationFile));
+                            reservationList.add((ReservationDetail) new CabinDetail(reservationFile));
                         }
                     }
                 }
@@ -152,13 +152,13 @@ public class CustomerAccount {
     }
 
     public boolean reservationExists(String reservationNumber){
-        for (Reservation reservation : reservationList){
+        for (ReservationDetail reservation : reservationList){
             if (reservation.getReservationNumber().equals(reservationNumber)) {
                 return true;
             }
         } return false;
     }
-    public void addReservation(Reservation lodgingReservation){
+    public void addReservation(ReservationDetail lodgingReservation){
         //check if reservation exists
         for(int i = 0;i< reservationList.size(); i++)
             if(reservationExists(lodgingReservation.getReservationNumber())){
@@ -173,7 +173,7 @@ public class CustomerAccount {
         boolean reservationFound = reservationExists(reservationNumber);
         if (reservationFound){
 
-            for (Reservation reservation : reservationList){
+            for (ReservationDetail reservation : reservationList){
                 if (reservation.getReservationNumber().equals(reservationNumber)){
                     reservation.setCompleted(true);
                     System.out.println("Reservation" + reservationNumber + "Ha been Completed");
@@ -194,8 +194,8 @@ public class CustomerAccount {
         }
     }
 
-    public Reservation getReservation(String reservationNumber) {
-        Reservation res = null;
+    public ReservationDetail getReservation(String reservationNumber) {
+        ReservationDetail res = null;
 
         for (int i = 0; i < reservationList.size(); i++) {
             if (reservationList.get(i).getReservationNumber().equals(reservationNumber)) {
@@ -205,7 +205,7 @@ public class CustomerAccount {
         return res;
     }
 
-    public void updateReservation(Reservation reservation){
+    public void updateReservation(ReservationDetail reservation){
         if(reservationExists(reservationNumber)){
             for (int i = 0; i < reservationList.size(); i++) {
                 if(reservationList.get(i).getReservationNumber().equals(reservation.getReservationNumber())){
@@ -287,10 +287,10 @@ public class CustomerAccount {
     public String getFilePath() {
         return filePath;
     }
-    public List<Reservation> getReservationList() {
+    public List<ReservationDetail> getReservationList() {
         return reservationList;
     }
-    public void setReservationList(List<Reservation> reservationList) {
+    public void setReservationList(List<ReservationDetail> reservationList) {
         this.reservationList = reservationList;
     }
 }

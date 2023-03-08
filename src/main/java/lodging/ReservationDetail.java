@@ -1,12 +1,15 @@
 package lodging;
 
+import java.io.File;
 import java.util.Date;
 
-abstract public class RoomDetail extends Reservation{
+abstract public class ReservationDetail {
 
+    protected String reservationNumber;
+    protected String accountNumber;
 
+    protected Address address;
     protected int nights;
-
     protected Date checkIn;
 
     protected Date checkOut;
@@ -17,7 +20,7 @@ abstract public class RoomDetail extends Reservation{
 
     protected int squareFootage;
 
-    protected String roomStatus;
+    protected String roomStatus = "Draft";
 
     protected String roomType;
 
@@ -25,21 +28,29 @@ abstract public class RoomDetail extends Reservation{
 
 
     //Above parameters have set and get methods so the appropriate lodging that fits the criteria of the customer can be identified
-    public RoomDetail(String reservationNumber, String accountNumber, int nights, Date checkIn, Date checkOut,
+    public ReservationDetail(String reservationNumber, String accountNumber, int nights, Date checkIn, Date checkOut,
                       int bedCount, int squareFootage, double bathroomCount, int bedRoomCount, String roomStatus){
-        super(reservationNumber, accountNumber);
+        super();
 
         //Calls from parent constructor in Reservation class
         //Assign values to attributes relating to common room details across all different lodging information
     }
 
-    public RoomDetail(String line) { //Overloading
-        super(line);
+    public static ReservationDetail loadFromFile(String fileName, String reservationNumber) throws IllegalLoadException {
+        File file = new File(fileName);
+        try {
+            // code to load reservation from file
+        } catch (RuntimeException e) {
+            throw new IllegalLoadException("Account: ", "reservation.txt" + fileName, "reservation number" + reservationNumber);
+        }
+        return null;
     }
 
-    public RoomDetail() {
+    public ReservationDetail(String line) { //Overloading
         super();
     }
+
+
 
     //format and return object data in JSON
     public String toString(){
@@ -56,14 +67,11 @@ abstract public class RoomDetail extends Reservation{
     };
 
     //create and return copy of object
-    public RoomDetail clone() throws CloneNotSupportedException {
-        return (RoomDetail) super.clone();
-    }
 
     //create and return copy of overloaded method
-    public RoomDetail clone(String line) throws CloneNotSupportedException {
+    public ReservationDetail clone(String line) throws CloneNotSupportedException {
         // return new lodging.RoomDetail(this.reservationNumber...)
-        return (RoomDetail) super.clone();
+        return (ReservationDetail) super.clone();
     }
     public int getNights() { //
         return nights;
@@ -73,6 +81,32 @@ abstract public class RoomDetail extends Reservation{
         if(nights < 1){
             throw new IllegalArgumentException("Can not have less than one night");
         }
+    }
+    public void setCompleted(boolean b) {
+    }
+
+    public void cancelReservation() {
+    }
+
+    public void updateReservation(ReservationDetail reservation) {
+    }
+
+    public float calculateTotalPrice() {
+        return 0.0f;
+    }
+
+    public String getReservationNumber() {
+        return reservationNumber;
+    }
+    public void setReservationNumber(String reservationNumber) {
+        this.reservationNumber = reservationNumber;
+    }
+
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+    public void setAccountNumber(String accountNumber) {
+        this.accountNumber = accountNumber;
     }
     public Date getCheckIn() {
         return checkIn;
@@ -129,6 +163,8 @@ abstract public class RoomDetail extends Reservation{
         this.roomStatus = roomStatus;
     }
 
+    public void saveToFile(String filename) {
+    }
 };
 
 

@@ -10,7 +10,7 @@ import java.util.Date;
 import java.util.Random;
 import java.util.Scanner;
 
-public class HotelDetail extends RoomDetail{
+public class HotelDetail extends ReservationDetail{
 
     private boolean containsKitchenette; // True or false on if the BHotel room has a kitchenette
     private static String generateReservationNumber;

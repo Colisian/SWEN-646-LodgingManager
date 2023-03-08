@@ -8,7 +8,7 @@ import java.util.Date;
 import java.util.Random;
 import java.util.Scanner;
 
-public class HouseDetail extends RoomDetail {
+public class HouseDetail extends ReservationDetail {
 
     private int numberOfFloors; // amount of floors in the house
 

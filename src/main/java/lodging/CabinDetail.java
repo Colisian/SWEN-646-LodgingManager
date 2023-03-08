@@ -11,7 +11,7 @@ import java.util.Date;
 import java.util.Random;
 import java.util.Scanner;
 
-public class CabinDetail extends RoomDetail {
+public class CabinDetail extends ReservationDetail {
 
     private boolean containsKitchen; //Does the cabin contain a kitchen?
     private boolean containsLoft; //Does the cabin contain a Loft?

@@ -9,24 +9,24 @@ public class LodgingManager {
 
     private List<CustomerAccount> customerAccounts = new ArrayList<>();
 
-    private List<Reservation> lodgingReservations = new ArrayList<>();
+    private List<ReservationDetail> lodgingReservations = new ArrayList<>();
 
 
 
-    private Reservation lodgingReservation;
+    private ReservationDetail lodgingReservation;
 
     private boolean finalized;
 
     private CustomerAccount customer;
 
-    public LodgingManager(CustomerAccount customer, Reservation lodgingReservation) {
+    public LodgingManager(CustomerAccount customer, ReservationDetail lodgingReservation) {
 
         //Validate parameters
         //assign a customerAccount to a reservation
         //create an instance of a reservation
 
     }
-    public void addReservation(Reservation lodgingReservation) throws IllegalOperationException{
+    public void addReservation(ReservationDetail lodgingReservation) throws IllegalOperationException{
 
         //add reservation to the lodging manager
         //Call lodging.addReservation(reservation)
@@ -38,7 +38,7 @@ public class LodgingManager {
 
 
     private boolean reservationExists(String reservationNumber) {
-        for (Reservation lodgingReservation : lodgingReservations) {
+        for (ReservationDetail lodgingReservation : lodgingReservations) {
             if(lodgingReservation.getReservationNumber().equals(reservationNumber)){
                 return true;
             }
@@ -46,7 +46,7 @@ public class LodgingManager {
         return false;
     }
 
-    public void editReservation(Reservation lodgingReservation){
+    public void editReservation(ReservationDetail lodgingReservation){
         //identifies a reservation by its unique number and allows parameters to be adjusted
     }
     public void finalizeReservation( String reservationNumber, String accountNumber){

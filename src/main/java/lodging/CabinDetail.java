@@ -4,10 +4,12 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Date;
 import java.util.Random;
+import java.util.Scanner;
 
 public class CabinDetail extends RoomDetail {
 
@@ -67,8 +69,18 @@ public class CabinDetail extends RoomDetail {
         return res;
     }
 
-    public CabinDetail(String line){ //Overloading method
-        super(line);
+    public CabinDetail(String filename){ //Overloading method
+        super(filename);
+
+        String line;
+        Scanner sc;
+        try {
+            sc = new Scanner(new File(filename));
+            line = sc.nextLine();
+            sc.close();
+        } catch (FileNotFoundException e){
+            throw new IllegalLoadException("Cabin Reservation", filename, accountNumber);
+        }
     }
 
 

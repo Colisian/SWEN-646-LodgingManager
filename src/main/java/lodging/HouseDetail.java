@@ -3,12 +3,10 @@ package lodging;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.Date;
 import java.util.Random;
+import java.util.Scanner;
 
 public class HouseDetail extends RoomDetail {
 
@@ -53,7 +51,19 @@ public class HouseDetail extends RoomDetail {
         System.out.println("House Reservation Number: " + generateReservationNumber);
     }
 
-    public HouseDetail(String reservationFile) {
+    public HouseDetail(String fileName) {
+        super(fileName);
+
+        String line;
+        Scanner sc;
+        try{
+            sc = new Scanner(new File(fileName));
+            line = sc.nextLine();
+            sc.close();
+        } catch (FileNotFoundException e){
+            throw new IllegalLoadException("House Reservation", fileName, accountNumber);
+        }
+        numberOfFloors = Integer.parseInt(line.substring(line.indexOf("<numberOfFloors>")+ 16, line.indexOf("</numberOfFloors>")));
 
     }
 

@@ -4,6 +4,7 @@ import java.util.Date;
 
 abstract public class RoomDetail extends Reservation{
 
+
     protected int nights;
 
     protected Date checkIn;

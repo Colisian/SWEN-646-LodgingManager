@@ -4,7 +4,7 @@ import java.util.List;
 import java.io.File;
 import java.io.FileNotFoundException;
 
-public abstract class Reservation implements Cloneable {
+public abstract class Reservation {
 
     public Reservation(String line) { //Overloading
 

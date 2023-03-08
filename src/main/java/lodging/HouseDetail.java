@@ -100,8 +100,13 @@ public class HouseDetail extends RoomDetail {
 
 
     public int getNumberOfFloors() {return numberOfFloors;}
-    public void setNumberOfFloors(int numberOfFloors) {
-        this.numberOfFloors = numberOfFloors;
+    public void setNumberOfFloors(int floors) {
+        if(numberOfFloors == Integer.parseInt(null))
+            throw new IllegalArgumentException("Number of floors can not be null");
+        if (roomStatus.equals("draft"))
+            numberOfFloors = floors;
+        else
+            throw new IllegalStateException("Reservation is in draft status");
     }
 
     public String getGenerateReservationNumber() {

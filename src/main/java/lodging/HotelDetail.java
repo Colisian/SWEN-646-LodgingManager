@@ -10,7 +10,6 @@ import java.util.Scanner;
 public class HotelDetail extends ReservationDetail{
 
     private boolean containsKitchenette; // True or false on if the BHotel room has a kitchenette
-    private static String generateReservationNumber;
 
     private Address address;
 
@@ -29,11 +28,11 @@ public class HotelDetail extends ReservationDetail{
         //Assign values to House specific attributes
         Random random = new Random();
         int resNumber = random.nextInt(99999999);
-        generateReservationNumber = "HOT" + String.valueOf(resNumber);
+        String generateReservationNumber = "HOT" + String.valueOf(resNumber);
 
         String accountPath = "Local Drive (C:)" + accountNumber;
         JSONObject putInFile = new JSONObject();
-        putInFile.put("reservationNumber",generateReservationNumber);
+        putInFile.put("reservationNumber", generateReservationNumber);
         putInFile.put("accountNumber",accountPath);
         putInFile.put("numberOfFloors",containsKitchenette);
         putInFile.put("nights",nights);

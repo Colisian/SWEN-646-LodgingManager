@@ -2,44 +2,74 @@ package lodging;
 
 
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Vector;
 
 public class LodgingManager {
 
-    private List<CustomerAccount> customerAccounts = new ArrayList<>();
+
+    private List<CustomerAccount> accounts = new ArrayList<>();
+
+    //private Vector <CustomerAccount> accounts;
 
     private List<ReservationDetail> lodgingReservations = new ArrayList<>();
 
-
-
-    private ReservationDetail lodgingReservation;
+    private String filePath = "Local Drive (C:/swen-646_LodgingManager/accounts";
 
     private boolean finalized;
 
-    private CustomerAccount customer;
 
-    public LodgingManager(CustomerAccount customer, ReservationDetail lodgingReservation) {
+    public LodgingManager() {
 
         //Validate parameters
         //assign a customerAccount to a reservation
         //create an instance of a reservation
+        accounts = new Vector<CustomerAccount>();
+        File dir = new File(filePath);
+        if(dir.isDirectory()){
+            String[] list = dir.list();
+            for (String line : list) {
+                CustomerAccount a = new CustomerAccount(filePath + line);
+            }
 
-    }
-    public void addReservation(ReservationDetail lodgingReservation) throws IllegalOperationException{
+            } else dir.mkdir();
+        }
+
+    public void addReservation(String accountNumber, ReservationDetail lodgingReservation) throws IllegalOperationException{
 
         //add reservation to the lodging manager
         //Call lodging.addReservation(reservation)
+        for (CustomerAccount account : accounts) {
 
-        if(reservationExists(lodgingReservation.getReservationNumber())){
-            throw new DuplicateObjectException("Reservation", lodgingReservation.getReservationNumber());
-        }
+            if (account.getAccountNumber().equals(accountNumber)) {
+                if (account.hasReservation(lodgingReservation.getReservationNumber())) {
+                    throw new DuplicateObjectException("Reservation", lodgingReservation.getReservationNumber());
+
+                } else {
+                    account.addReservation(lodgingReservation);
+                }
+                return;
+                }
+            }
+        throw new IllegalArgumentException("Account not found");
     }
 
 
     private boolean reservationExists(String reservationNumber) {
         for (ReservationDetail lodgingReservation : lodgingReservations) {
             if(lodgingReservation.getReservationNumber().equals(reservationNumber)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    //iterates over a list of customer accounts and looks for any repeating account based by account number
+    private boolean accountExists(String accountNumber){
+        for (CustomerAccount account : accounts) {
+            if (account.getAccountNumber().equals(accountNumber)) {
                 return true;
             }
         }
@@ -69,14 +99,16 @@ public class LodgingManager {
 
 
     //iterates over a list of customer accounts and looks for any repeating account based by account number
-    public boolean accountExists(String accountNumber) {
-        for (CustomerAccount customerAccount : customerAccounts) {
+    /*
+    public boolean accountExists2(String accountNumber) {
+        for (CustomerAccount customerAccount : accounts) {
             if (customerAccount.getAccountNumber().equals(accountNumber)) {
                 return true;
             }
         }
         return false;
     }
+     */
     public void addAccount(CustomerAccount customer){
         // identifies a new customer account and adds it to the manager.
         //if account already exists exception is thrown
@@ -108,10 +140,25 @@ public class LodgingManager {
     public boolean getFinalized() {return finalized;}
 
     public void setFinalized(boolean finalized) {this.finalized = finalized;}
-    public CustomerAccount getCustomer() {
-        return customer;
+
+    public List<CustomerAccount> getAccounts() {
+        return accounts;
     }
-    public void setCustomer(CustomerAccount customer) { // Set method to change
-        this.customer = customer;
+
+    public void setAccounts(List<CustomerAccount> accounts) {
+        this.accounts = accounts;
     }
+
+
+    public CustomerAccount getAccount(String accountNumber){
+        CustomerAccount temp = null;
+        for (CustomerAccount account : accounts) {
+            if (account.getAccountNumber().equals(accountNumber))
+                temp = account;
+
+        }
+        return temp;
+    }
+
+
 }

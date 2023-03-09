@@ -30,7 +30,7 @@ public class HotelDetail extends ReservationDetail{
         int resNumber = random.nextInt(99999999);
         String generateReservationNumber = "HOT" + String.valueOf(resNumber);
 
-        String accountPath = "Local Drive (C:)" + accountNumber;
+        String accountPath = "Local Drive (C:\\\\swen-646_LodgingManager\\accounts" + accountNumber;
         JSONObject putInFile = new JSONObject();
         putInFile.put("reservationNumber", generateReservationNumber);
         putInFile.put("accountNumber",accountPath);

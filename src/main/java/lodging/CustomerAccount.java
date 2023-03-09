@@ -21,7 +21,7 @@ public class CustomerAccount {
 
     private String reservationNumber;
 
-    private final  String filePath = "Local Disk (C:)";
+    private final  String filePath = "Local Drive (C:/swen-646_LodgingManager/accounts";
 
     private List<ReservationDetail> reservationList = new ArrayList<>();
 
@@ -292,5 +292,9 @@ public class CustomerAccount {
     }
     public void setReservationList(List<ReservationDetail> reservationList) {
         this.reservationList = reservationList;
+    }
+
+    public boolean hasReservation(String reservationNumber) {
+        return false;
     }
 }

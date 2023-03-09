@@ -16,18 +16,29 @@ public class Address {
 
 
     //Create and return a copy of the object
+    /*
     public Address clone() throws CloneNotSupportedException{
         Address add = new Address(this.street, this.city, this.state,this.zipCode);
         return add;
         //return new lodging.Address(this.street, this.city, this.state, this.zipCode)
         //return (Address) super.clone();
     }
+     */
     public Address(String line) throws CloneNotSupportedException{ //Creates and returns copy of object with line parameter
         street = line.substring(line.indexOf("<street>") + 8, line.indexOf("</street>"));
         city = line.substring(line.indexOf("<city>") + 6, line.indexOf("</city"));
         state = line.substring(line.indexOf("<state>") + 7, line.indexOf("</state>"));
-        zipCode = line.substring(line.indexOf("<zip>") + 8, line.indexOf("</zip>"));
+        zipCode = line.substring(line.indexOf("<zip>") + 5, line.indexOf("</zip>"));
 
+    }
+    public String toString(){
+        //return
+        return "<address>" +
+                "<street>" + street + "</street>" +
+                "<city>" + city + "</city>" +
+                "<state>" + state + "</state>" +
+                "<zip>" + zipCode + "</zip>" +
+                "</address>";
     }
     public String getStreet() {
         return street;
@@ -52,13 +63,5 @@ public class Address {
         this.zipCode = zipCode;
     }
 
-    public String toString(){
-        //return
-        return "<address>" +
-                "<street>" + street + "</street>" +
-                "<city>" + city + "</city>" +
-                "<state>" + state + "</state>" +
-                "<zip>" + zipCode + "</zip>" +
-                "</address>";
-    }
+
 }

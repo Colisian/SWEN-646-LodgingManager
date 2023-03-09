@@ -3,10 +3,7 @@ package lodging;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.Date;
 import java.util.Random;
 import java.util.Scanner;
@@ -50,7 +47,7 @@ public class CabinDetail extends ReservationDetail {
 
         File accountInfo = new File(accountPath + "|" + generateReservationNum + ".json");
         accountInfo.createNewFile();
-        FileWriter writer = new FileWriter(accountInfo.getAbsolutePath());
+        BufferedWriter writer = new BufferedWriter(new FileWriter(accountInfo.getAbsolutePath()));
         writer.write(putInFile.toString());
         writer.close();
         System.out.println("Cabin Reservation: " + generateReservationNum);

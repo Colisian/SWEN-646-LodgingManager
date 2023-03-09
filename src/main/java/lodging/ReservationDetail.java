@@ -1,13 +1,14 @@
 package lodging;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Date;
+import java.util.Scanner;
 
-abstract public class ReservationDetail {
+public abstract class ReservationDetail {
 
     protected String reservationNumber;
     protected String accountNumber;
-
     protected Address address;
     protected int nights;
     protected Date checkIn;
@@ -30,7 +31,6 @@ abstract public class ReservationDetail {
     //Above parameters have set and get methods so the appropriate lodging that fits the criteria of the customer can be identified
     public ReservationDetail(String reservationNumber, String accountNumber, int nights, Date checkIn, Date checkOut,
                       int bedCount, int squareFootage, double bathroomCount, int bedRoomCount, String roomStatus){
-        super();
 
         //Calls from parent constructor in Reservation class
         //Assign values to attributes relating to common room details across all different lodging information
@@ -46,8 +46,16 @@ abstract public class ReservationDetail {
         return null;
     }
 
-    public ReservationDetail(String line) { //Overloading
-        super();
+    public ReservationDetail(String fileName) { //Overloading
+        String line;
+        Scanner sc;
+        try{
+            sc = new Scanner(new File(fileName));
+            line = sc.nextLine();
+            sc.close();
+        } catch (FileNotFoundException e){
+            throw new IllegalLoadException("Reservation", fileName, accountNumber);
+        }
     }
 
 

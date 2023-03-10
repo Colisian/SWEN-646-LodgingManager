@@ -38,7 +38,9 @@ public class LodgingManager {
         }
 
     public void addReservation(String accountNumber, ReservationDetail lodgingReservation) throws IllegalOperationException{
-
+        if(!accountExists(accountNumber)){
+            throw new IllegalArgumentException("Account not found");
+        }
         //add reservation to the lodging manager
         //Call lodging.addReservation(reservation)
         for (CustomerAccount account : accounts) {
@@ -53,7 +55,6 @@ public class LodgingManager {
                 return;
                 }
             }
-        throw new IllegalArgumentException("Account not found");
     }
 
 
@@ -97,18 +98,6 @@ public class LodgingManager {
         finalized = true;
     }
 
-
-    //iterates over a list of customer accounts and looks for any repeating account based by account number
-    /*
-    public boolean accountExists2(String accountNumber) {
-        for (CustomerAccount customerAccount : accounts) {
-            if (customerAccount.getAccountNumber().equals(accountNumber)) {
-                return true;
-            }
-        }
-        return false;
-    }
-     */
     public void addAccount(CustomerAccount customer){
         // identifies a new customer account and adds it to the manager.
         //if account already exists exception is thrown

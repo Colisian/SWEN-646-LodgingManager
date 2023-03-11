@@ -62,16 +62,48 @@ public abstract class ReservationDetail {
 
     //format and return object data in JSON
     public String toString(){
-        return null;
+
+        return "<accountNumber>" + accountNumber + "</accountNumber>" +
+                "<reservationNumber>" + reservationNumber + "</reservationNumber>" +
+                "<address>" + address + "</address>" +
+                "<nights>" + nights + "</nights>" +
+                "<checkIn>" + checkIn + "</checkIn>" +
+                "<checkOut>" + checkOut + "</checkOut>" +
+                "<bedRoomCount>" + bedRoomCount +"</bedRoomCount>" +
+                "<bedCount>" + bedCount + "</bedCount>" +
+                "<bathroomCount>" + bedRoomCount + "</bathroomCount>" +
+                "<squareFootage>" + squareFootage + "</squareFootage>" +
+                "<roomStatus>" + roomStatus + "</roomStatus>" ;
 
     };
-    public float calculatePrice(){ // Overrides in HotelDetail,HouseDetail, and CabinDetail
+    public float calculateBasePrice() { // Overrides in HotelDetail,HouseDetail, and CabinDetail
         //price is (120 * nights) + $15 if squareFootage is over 900 + specific calculation if it is cabin/hotel/house
-        return 0.0f;
-    };
+        float basePrice = 120.00f;
+        if(squareFootage > 900){
+            basePrice += 20.00f;
+        }
+        return basePrice;
+    }
+
+    public float calculateTotalPrice() {
+        return calculateBasePrice() * nights;
+    }
 
     //updates the parameters of the room details that all rooms shares
-    public void updateRoomDetail(int nights, Date checkIn, Date checkOut, int squareFootage, String roomStatus, String roomType, double bathroomCount){
+    public void updateReservationDetail(ReservationDetail lodgingReservation){
+        if(roomStatus.equals("draft")){
+            this.accountNumber = lodgingReservation.accountNumber;
+            this.reservationNumber = lodgingReservation.reservationNumber;
+            this.address = lodgingReservation.address;
+            this.checkIn = lodgingReservation.checkIn;
+            this.checkOut = lodgingReservation.checkOut;
+            this.nights = lodgingReservation.nights;
+            this.bedCount = lodgingReservation.bedCount;
+            this.bathroomCount = lodgingReservation.bathroomCount;
+            this.squareFootage = lodgingReservation.squareFootage;
+            this.roomStatus = lodgingReservation.roomStatus;
+
+        }
     };
 
     //create and return copy of object
@@ -99,9 +131,7 @@ public abstract class ReservationDetail {
     public void updateReservation(ReservationDetail reservation) {
     }
 
-    public float calculateTotalPrice() {
-        return 0.0f;
-    }
+
 
     public String getReservationNumber() {
         return reservationNumber;

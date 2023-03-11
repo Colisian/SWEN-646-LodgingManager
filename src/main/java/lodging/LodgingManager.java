@@ -30,6 +30,7 @@ public class LodgingManager {
         File dir = new File(filePath);
         if(dir.isDirectory()){
             String[] list = dir.list();
+            assert list != null;
             for (String line : list) {
                 CustomerAccount a = new CustomerAccount(filePath + line);
             }

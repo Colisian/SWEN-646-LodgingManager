@@ -100,9 +100,13 @@ public class HotelDetail extends ReservationDetail{
                 "</Hotel>";
     }
 
-    public float calculatePrice(){ //This method will Override the calculatePrice in RoomDetail if customer chooses a hotel lodging
+    public float calculateTotalPrice(){ //This method will Override the calculatePrice in RoomDetail if customer chooses a hotel lodging
         //Price for hotel is addition $50 from overall price with additional $10 if kitchenette is true
-        return 0.0f;
+        float basePrice = super.calculateTotalPrice();
+        if (containsKitchenette){
+            basePrice += 60.0f;
+        } else basePrice += 50.0f;
+        return basePrice;
     }
 
     //Allows changes to be made to the values passed in HotelDetails

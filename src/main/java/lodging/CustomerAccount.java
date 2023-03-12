@@ -132,8 +132,8 @@ public class CustomerAccount {
 
             save.println(toString());
 
-            for (int i = 0; i<reservationList.size();i++){
-                reservationList.get(i).saveToFile(filename);
+            for (ReservationDetail reservationDetail : reservationList) {
+                reservationDetail.saveToFile(filename);
             }
             save.close();
         } catch (Exception e){
@@ -185,9 +185,9 @@ public class CustomerAccount {
 
     public void cancelReservation(String reservationNumber) throws IllegalOperationException {
         if (reservationExists(reservationNumber)) {
-            for (int i = 0; i < reservationList.size(); i++)
-                if (reservationList.get(i).getReservationNumber().equals(reservationNumber)) {
-                    reservationList.get(i).cancelReservation();
+            for (ReservationDetail reservationDetail : reservationList)
+                if (reservationDetail.getReservationNumber().equals(reservationNumber)) {
+                    reservationDetail.cancelReservation();
                 }
         } else{
             throw new IllegalArgumentException("Reservation with number: " + reservationNumber + "can not be cancelled");
@@ -197,9 +197,9 @@ public class CustomerAccount {
     public ReservationDetail getReservation(String reservationNumber) {
         ReservationDetail res = null;
 
-        for (int i = 0; i < reservationList.size(); i++) {
-            if (reservationList.get(i).getReservationNumber().equals(reservationNumber)) {
-                res = reservationList.get(i);
+        for (ReservationDetail reservationDetail : reservationList) {
+            if (reservationDetail.getReservationNumber().equals(reservationNumber)) {
+                res = reservationDetail;
             } else return res;
         }
         return res;
@@ -207,9 +207,9 @@ public class CustomerAccount {
 
     public void updateReservation(ReservationDetail lodgingReservation){
         if(reservationExists(reservationNumber)){
-            for (int i = 0; i < reservationList.size(); i++) {
-                if(reservationList.get(i).getReservationNumber().equals(lodgingReservation.getReservationNumber())){
-                    reservationList.get(i).updateReservation(lodgingReservation);
+            for (ReservationDetail reservationDetail : reservationList) {
+                if (reservationDetail.getReservationNumber().equals(lodgingReservation.getReservationNumber())) {
+                    reservationDetail.updateReservation(lodgingReservation);
                 }
 
             }
@@ -221,8 +221,8 @@ public class CustomerAccount {
     public float calculateReservationsPrice(String reservationNumber){
         float price = Float.parseFloat(null);
         if(reservationExists(reservationNumber)){
-            for (int i = 0; i < reservationList.size(); i++) {
-                price = reservationList.get(i).calculateTotalPrice();
+            for (ReservationDetail reservationDetail : reservationList) {
+                price = reservationDetail.calculateTotalPrice();
 
             }
         } else throw new IllegalArgumentException("Reservation Prices can not be calculated");

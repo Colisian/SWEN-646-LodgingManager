@@ -106,8 +106,8 @@ public class HouseDetail extends ReservationDetail {
 
     }
     // calculate the price of the house reservation
-    public float calculatePrice(){
-        return 0.0f;
+    public float calculateTotalPrice(){
+        return super.calculateTotalPrice();
     }
 
     //create and return a copy of the object

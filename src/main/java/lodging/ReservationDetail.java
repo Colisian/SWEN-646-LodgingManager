@@ -108,7 +108,7 @@ public abstract class ReservationDetail {
         //price is (120 * nights) + $15 if squareFootage is over 900 + specific calculation if it is cabin/hotel/house
         float basePrice = 120.00f;
         if(squareFootage > 900){
-            basePrice += 20.00f;
+            basePrice += 15.00f;
         }
         return basePrice;
     }

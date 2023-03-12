@@ -11,13 +11,14 @@ public class HotelDetail extends ReservationDetail{
 
     private boolean containsKitchenette; // True or false on if the BHotel room has a kitchenette
 
+    private String generateReservationNumber;
     private Address address;
 
 
-    public HotelDetail(boolean containsKitchenette, Address address, String reservationNumber, String accountNumber, int nights, Date checkIn, Date checkOut,
-                       int bedCount, int squareFootage, double bathroomCount,String roomStatus, String roomType, int bedRoomCount) throws IOException {
-        super(reservationNumber, accountNumber, nights, checkIn, checkOut,
-                bedCount, squareFootage, bathroomCount, bedRoomCount ,roomStatus);
+    public HotelDetail(boolean kitchenette, Address logdingAddress, String reservationNum, String accountNum, int numNights, String checkInStart, String checkOutEnd,
+                       int bedNum, int sqFt, double bathroom,String roomStat, int bedRoomNum) throws IOException {
+        super(logdingAddress, accountNum, numNights, checkInStart, checkOutEnd, bedNum,
+                sqFt, bathroom ,roomStat, bedRoomNum);
 
         if(bedRoomCount > 1 || bathroomCount > 1 || bedCount != 2 ){
             throw new IllegalArgumentException("Hotels only have single bedrooom, single bathroom and two bed options");
@@ -28,7 +29,21 @@ public class HotelDetail extends ReservationDetail{
         //Assign values to House specific attributes
         Random random = new Random();
         int resNumber = random.nextInt(99999999);
-        String generateReservationNumber = "HOT" + String.valueOf(resNumber);
+        generateReservationNumber = "HOT" + String.valueOf(resNumber);
+
+        reservationNumber = generateReservationNumber;
+        address = logdingAddress;
+        accountNumber = accountNum;
+        nights = numNights;
+        checkIn = checkInStart;
+        checkOut = checkOutEnd;
+        bedCount = bedNum;
+        squareFootage = sqFt;
+        bedRoomCount = bedRoomNum;
+        bathroomCount = bathroom;
+        roomStatus = roomStat;
+
+        containsKitchenette = kitchenette;
 
         String accountPath = "Local Drive (C:\\\\swen-646_LodgingManager\\accounts" + accountNumber;
         JSONObject putInFile = new JSONObject();

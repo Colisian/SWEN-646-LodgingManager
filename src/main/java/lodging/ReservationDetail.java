@@ -11,9 +11,9 @@ public abstract class ReservationDetail {
     protected String accountNumber;
     protected Address address;
     protected int nights;
-    protected Date checkIn;
+    protected String checkIn;
 
-    protected Date checkOut;
+    protected String checkOut;
 
     protected int bedRoomCount;
 
@@ -29,23 +29,51 @@ public abstract class ReservationDetail {
 
 
     //Above parameters have set and get methods so the appropriate lodging that fits the criteria of the customer can be identified
-    public ReservationDetail(String reservationNumber, String accountNumber, int nights, Date checkIn, Date checkOut,
-                      int bedCount, int squareFootage, double bathroomCount, int bedRoomCount, String roomStatus){
+    public ReservationDetail(Address logdingAddress, String accountNum, int numNights,
+                             String checkInStart, String checkOutEnd, int bedNum, int sqFt, double bathroom, String roomStat, int bedRoomNum) {
+        address = logdingAddress;
+        accountNumber = accountNum;
+        nights = numNights;
+        checkIn = checkInStart;
+        checkOut = checkOutEnd;
+        bedCount = bedNum;
+        squareFootage = sqFt;
+        bedRoomCount = bedRoomNum;
+        bathroomCount = bathroom;
+        roomStatus = roomStat;
 
-        //Calls from parent constructor in Reservation class
-        //Assign values to attributes relating to common room details across all different lodging information
     }
 
-    public static ReservationDetail loadFromFile(String fileName, String reservationNumber) throws IllegalLoadException {
-        File file = new File(fileName);
+    public ReservationDetail(String fileName) throws IllegalLoadException {
+        String line;
+        Scanner sc;
         try {
-            // code to load reservation from file
-        } catch (RuntimeException e) {
+            sc= new Scanner(new File(fileName));
+            line = sc.nextLine();
+            sc.close();
+        } catch (FileNotFoundException e) {
             throw new IllegalLoadException("Account: ", "reservation.txt" + fileName, "reservation number" + reservationNumber);
         }
-        return null;
+        catch (Exception e){
+            throw new IllegalLoadException("Reservation", fileName, reservationNumber);
+        }
+        String reservationNumberTag = line.substring(line.indexOf("<reservationNumber>") + 19, line.indexOf("</reservationNumber>"));
+        String accountNumberTag = line.substring(line.indexOf("<accountNumber>") + 15, line.indexOf("</accountNumber>"));
+        int nightsTag = Integer.parseInt(line.substring(line.indexOf("<nights>") + 7, line.indexOf("</nights>")));
+        String checkInTag = line.substring(line.indexOf("<checkIn>") + 9, line.indexOf("</checkIn>"));
+        String checkOutTag = line.substring(line.indexOf("<checkOut>") + 10, line.indexOf("</checkOut>"));
+        int bedCountTag = Integer.parseInt(line.substring(line.indexOf("<bedCount>") + 10, line.indexOf("</bedCount>")));
+        int squareFootageTag = Integer.parseInt(line.substring(line.indexOf("<sqFt>") + 6, line.indexOf("</sqFt>")));
+        double bathroomCountTag = Double.parseDouble(line.substring(line.indexOf("<zip>") + 5, line.indexOf("</zip>")));
+        String roomStatusTag = line.substring(line.indexOf("<roomStatus>") + 11, line.indexOf("</roomStatus>"));
+        int bedRoomTag = Integer.parseInt(line.substring(line.indexOf("<bedRoomCount>") + 12, line.indexOf("</bedRoomCount")));
+
     }
 
+
+    
+
+    /*
     public ReservationDetail(String fileName) { //Overloading
         String line;
         Scanner sc;
@@ -57,7 +85,7 @@ public abstract class ReservationDetail {
             throw new IllegalLoadException("Reservation", fileName, accountNumber);
         }
     }
-
+ */
 
 
     //format and return object data in JSON
@@ -90,7 +118,7 @@ public abstract class ReservationDetail {
     }
 
     //updates the parameters of the room details that all rooms shares
-    public void updateReservationDetail(ReservationDetail lodgingReservation){
+    public void updateReservation(ReservationDetail lodgingReservation){
         if(roomStatus.equals("draft")){
             this.accountNumber = lodgingReservation.accountNumber;
             this.reservationNumber = lodgingReservation.reservationNumber;
@@ -128,11 +156,6 @@ public abstract class ReservationDetail {
     public void cancelReservation() {
     }
 
-    public void updateReservation(ReservationDetail reservation) {
-    }
-
-
-
     public String getReservationNumber() {
         return reservationNumber;
     }
@@ -146,16 +169,16 @@ public abstract class ReservationDetail {
     public void setAccountNumber(String accountNumber) {
         this.accountNumber = accountNumber;
     }
-    public Date getCheckIn() {
+    public String getCheckIn() {
         return checkIn;
     }
-    public void setCheckIn(Date checkIn) {
+    public void setCheckIn(String checkIn) {
         this.checkIn = checkIn;
     }
-    public Date getCheckOut() {
+    public String getCheckOut() {
         return checkOut;
     }
-    public void setCheckOut(Date checkOut) {
+    public void setCheckOut(String checkOut) {
         this.checkOut = checkOut;
     }
     public int getBedRoomCount() {

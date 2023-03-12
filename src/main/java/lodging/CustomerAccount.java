@@ -205,11 +205,11 @@ public class CustomerAccount {
         return res;
     }
 
-    public void updateReservation(ReservationDetail reservation){
+    public void updateReservation(ReservationDetail lodgingReservation){
         if(reservationExists(reservationNumber)){
             for (int i = 0; i < reservationList.size(); i++) {
-                if(reservationList.get(i).getReservationNumber().equals(reservation.getReservationNumber())){
-                    reservationList.get(i).updateReservation(reservation);
+                if(reservationList.get(i).getReservationNumber().equals(lodgingReservation.getReservationNumber())){
+                    reservationList.get(i).updateReservation(lodgingReservation);
                 }
 
             }

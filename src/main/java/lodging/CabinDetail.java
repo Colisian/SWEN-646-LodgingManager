@@ -12,15 +12,14 @@ public class CabinDetail extends ReservationDetail {
 
     private boolean containsKitchen; //Does the cabin contain a kitchen?
     private boolean containsLoft; //Does the cabin contain a Loft?
-
     public static String generateReservationNum;
     private Address address;
 
 
-    public CabinDetail(boolean containsKitchen, boolean containsLoft, Address lodgingAddress, String reservationNumber, String accountNumber, int nights, Date checkIn, Date checkOut,
-                       int bedCount, int squareFootage, double bathroomCount, int bedRoomCount ,String roomStatus) throws IOException, JSONException {
-        super(reservationNumber, accountNumber, nights, checkIn, checkOut,
-                bedCount, squareFootage, bathroomCount, bedRoomCount,roomStatus);
+    public CabinDetail(boolean kitchen, boolean loft, Address logdingAddress, String reservationNum, String accountNum, int numNights, String checkInStart, String checkOutEnd,
+                       int bedNum, int sqFt, double bathroom, int bedRoomNum ,String roomStat) throws IOException, JSONException {
+        super(logdingAddress, accountNum, numNights, checkInStart, checkOutEnd, bedNum,
+                sqFt, bathroom ,roomStat, bedRoomNum);
 
         //call parent constructor from RoomDetail
         //Validate parameters
@@ -29,11 +28,25 @@ public class CabinDetail extends ReservationDetail {
         int resNumber = random.nextInt(99999999);
         generateReservationNum = "CAB" + String.valueOf(resNumber);
 
+        reservationNumber = generateReservationNum;
+        address = logdingAddress;
+        accountNumber = accountNum;
+        nights = numNights;
+        checkIn = checkInStart;
+        checkOut = checkOutEnd;
+        bedCount = bedNum;
+        squareFootage = sqFt;
+        bedRoomCount = bedRoomNum;
+        bathroomCount = bathroom;
+        roomStatus = roomStat;
+        containsKitchen = kitchen;
+        containsLoft = loft;
+
         String accountPath = "Local Drive (C:)" + accountNumber;
         JSONObject putInFile = new JSONObject();
         putInFile.put("containsKitchen",containsKitchen);
         putInFile.put("containsLoft",containsLoft);
-        putInFile.put("address",lodgingAddress);
+        putInFile.put("address",logdingAddress);
         putInFile.put("reservationNumber",generateReservationNum);
         putInFile.put("accountNumber",accountPath);
         putInFile.put("nights",nights);
@@ -58,7 +71,7 @@ public class CabinDetail extends ReservationDetail {
         CabinDetail res = null;
         try {
             res = new CabinDetail(this.containsKitchen, this.containsLoft, this.address, this.reservationNumber,
-                    this.accountNumber, this.nights, (Date)this.checkIn.clone(), (Date)this.checkOut.clone(), this.bedCount, this.squareFootage, this.bathroomCount,
+                    this.accountNumber, this.nights, this.checkIn, this.checkOut, this.bedCount, this.squareFootage, this.bathroomCount,
                     this.bedRoomCount, this.roomStatus);
         } catch (IOException e) {
             throw new RuntimeException(e);

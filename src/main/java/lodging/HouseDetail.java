@@ -16,10 +16,10 @@ public class HouseDetail extends ReservationDetail {
     private Address address;
 
 
-    public HouseDetail(int numberOfFloors, Address address, String reservationNumber, String accountNumber, int nights, Date checkIn, Date checkOut,
-                       int bedCount, int squareFootage, double bathroomCount, int bedRoomCount,String roomStatus) throws IOException, JSONException {
-        super(reservationNumber, accountNumber, nights, checkIn, checkOut,
-                bedCount, squareFootage, bathroomCount, bedRoomCount,roomStatus);
+    public HouseDetail(int numFloors, Address logdingAddress, String accountNum, int numNights, String checkInStart, String checkOutEnd,
+                       int bedNum, int sqFt, double bathroom, int bedRoomNum,String roomStat) throws IOException, JSONException {
+        super(logdingAddress, accountNum, numNights, checkInStart, checkOutEnd, bedNum,
+                sqFt, bathroom ,roomStat, bedRoomNum);
 
         //call parent constructor from RoomDetail
         //Validate parameters
@@ -28,6 +28,19 @@ public class HouseDetail extends ReservationDetail {
         Random random = new Random();
         int resNumber = random.nextInt(99999999);
         generateReservationNumber = "HOU" + String.valueOf(resNumber);
+
+        reservationNumber = generateReservationNumber;
+        address = logdingAddress;
+        accountNumber = accountNum;
+        nights = numNights;
+        checkIn = checkInStart;
+        checkOut = checkOutEnd;
+        bedCount = bedNum;
+        squareFootage = sqFt;
+        bedRoomCount = bedRoomNum;
+        bathroomCount = bathroom;
+        roomStatus = roomStat;
+        numberOfFloors = numFloors;
 
         String accountPath = "Local Drive (C:)" + accountNumber;
         JSONObject putInFile = new JSONObject();
@@ -99,8 +112,8 @@ public class HouseDetail extends ReservationDetail {
     public HouseDetail clone() throws CloneNotSupportedException{
         HouseDetail res = null;
         try {
-            res = new HouseDetail(this.numberOfFloors, this.address, this.reservationNumber,
-                    this.accountNumber, this.nights, (Date)this.checkIn.clone(), (Date)this.checkOut.clone(), this.bedCount, this.squareFootage, this.bathroomCount,
+            res = new HouseDetail(this.numberOfFloors, this.address,
+                    this.accountNumber, this.nights, this.checkIn, this.checkOut, this.bedCount, this.squareFootage, this.bathroomCount,
                     this.bedRoomCount, this.roomStatus);
         } catch (IOException e) {
             throw new RuntimeException(e);

@@ -2,6 +2,7 @@ package lodging;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -11,9 +12,9 @@ public abstract class ReservationDetail {
     protected String accountNumber;
     protected Address address;
     protected int nights;
-    protected String checkIn;
+    protected Date checkIn;
 
-    protected String checkOut;
+    protected Date checkOut;
 
     protected int bedRoomCount;
 
@@ -30,7 +31,7 @@ public abstract class ReservationDetail {
 
     //Above parameters have set and get methods so the appropriate lodging that fits the criteria of the customer can be identified
     public ReservationDetail(Address logdingAddress, String accountNum, int numNights,
-                             String checkInStart, String checkOutEnd, int bedNum, int sqFt, double bathroom, String roomStat, int bedRoomNum) {
+                             Date checkInStart, Date checkOutEnd, int bedNum, int sqFt, double bathroom, String roomStat, int bedRoomNum) {
         address = logdingAddress;
         accountNumber = accountNum;
         nights = numNights;
@@ -91,12 +92,14 @@ public abstract class ReservationDetail {
     //format and return object data in JSON
     public String toString(){
 
+        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
+
         return "<accountNumber>" + accountNumber + "</accountNumber>" +
                 "<reservationNumber>" + reservationNumber + "</reservationNumber>" +
                 "<address>" + address + "</address>" +
                 "<nights>" + nights + "</nights>" +
-                "<checkIn>" + checkIn + "</checkIn>" +
-                "<checkOut>" + checkOut + "</checkOut>" +
+                "<checkIn>" + formatter.format(checkIn) + "</checkIn>" +
+                "<checkOut>" + formatter.format(checkOut) + "</checkOut>" +
                 "<bedRoomCount>" + bedRoomCount +"</bedRoomCount>" +
                 "<bedCount>" + bedCount + "</bedCount>" +
                 "<bathroomCount>" + bedRoomCount + "</bathroomCount>" +
@@ -169,16 +172,16 @@ public abstract class ReservationDetail {
     public void setAccountNumber(String accountNumber) {
         this.accountNumber = accountNumber;
     }
-    public String getCheckIn() {
+    public Date getCheckIn() {
         return checkIn;
     }
-    public void setCheckIn(String checkIn) {
+    public void setCheckIn(Date checkIn) {
         this.checkIn = checkIn;
     }
-    public String getCheckOut() {
+    public Date getCheckOut() {
         return checkOut;
     }
-    public void setCheckOut(String checkOut) {
+    public void setCheckOut(Date checkOut) {
         this.checkOut = checkOut;
     }
     public int getBedRoomCount() {

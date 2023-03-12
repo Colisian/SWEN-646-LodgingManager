@@ -4,6 +4,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.*;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
 import java.util.Scanner;
@@ -16,7 +17,7 @@ public class CabinDetail extends ReservationDetail {
     private Address address;
 
 
-    public CabinDetail(boolean kitchen, boolean loft, Address logdingAddress, String reservationNum, String accountNum, int numNights, String checkInStart, String checkOutEnd,
+    public CabinDetail(boolean kitchen, boolean loft, Address logdingAddress, String reservationNum, String accountNum, int numNights, Date checkInStart, Date checkOutEnd,
                        int bedNum, int sqFt, double bathroom, int bedRoomNum ,String roomStat) throws IOException, JSONException {
         super(logdingAddress, accountNum, numNights, checkInStart, checkOutEnd, bedNum,
                 sqFt, bathroom ,roomStat, bedRoomNum);
@@ -95,13 +96,14 @@ public class CabinDetail extends ReservationDetail {
 
 
     public String toString(){
+        SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
         //Return cabin details in JSON format
         return "<Cabin>" + "\n" +
                 "<accountNumber>" + accountNumber + "</accountNumber>" +
                 "<reservationNumber>" + reservationNumber + "</reservationNumber>" +
                 "<Address>" + address + "</Address>" +
-                "<checkIn>" + checkIn + "</checkIn>" +
-                "<checkOut>" + checkOut + "</checkOut>" +
+                "<checkIn>" + formatter.format(checkIn) + "</checkIn>" +
+                "<checkOut>" + formatter.format(checkOut) + "</checkOut>" +
                 "<bedCount>" + bedCount + "</bedCount>" +
                 "<sqFt>" + squareFootage + "</sqFt>" +
                 "<bathroomCount>" + bathroomCount + "</bathroomCount>" +

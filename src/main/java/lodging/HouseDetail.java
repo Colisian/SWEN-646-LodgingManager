@@ -100,7 +100,9 @@ public class HouseDetail extends ReservationDetail {
     }
 
     //edit house reservation parameters
-    public void updateHouse(int numberOfFloors, Address address){
+    public void updateReservation(HouseDetail lodgingReservation){
+        super.updateReservation(lodgingReservation);
+        this.numberOfFloors = lodgingReservation.numberOfFloors;
 
     }
     // calculate the price of the house reservation

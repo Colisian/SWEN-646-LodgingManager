@@ -79,7 +79,7 @@ public class HotelDetail extends ReservationDetail{
         } catch (FileNotFoundException e) {
             throw new IllegalLoadException(fileName, accountNumber, "Hotel Reservation");
         }
-        containsKitchenette = Boolean.parseBoolean(line.substring(line.indexOf("<containsKitchenette>") + 16, line.indexOf("</containsKitchenette>")));
+        containsKitchenette = Boolean.parseBoolean(line.substring(line.indexOf("<containsKitchenette>") + 21, line.indexOf("</containsKitchenette>")));
 
     }
 
@@ -106,7 +106,9 @@ public class HotelDetail extends ReservationDetail{
     }
 
     //Allows changes to be made to the values passed in HotelDetails
-    public void updateHotel(boolean containsKitchenette, Address address){
+    public void updateReservation(HotelDetail lodgingReservation){
+        super.updateReservation(lodgingReservation);
+            this.containsKitchenette = lodgingReservation.containsKitchenette;
 
     }
     //create and return a copy of the object
@@ -121,8 +123,9 @@ public class HotelDetail extends ReservationDetail{
     public boolean getContainsKitchenette(){
         return containsKitchenette;
     }
-    public void setContainsKitchenette(boolean containsKitchenette) {
-        this.containsKitchenette = containsKitchenette;
+    public void setContainsKitchenette(boolean kitchenette) {
+        if(roomStatus.equals("draft"))
+            containsKitchenette = kitchenette;
     }
 
     public Address getAddress(){

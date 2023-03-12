@@ -113,7 +113,11 @@ public class CabinDetail extends ReservationDetail {
     }
 
     //make changes to the cabin reservation
-    public void updateCabin(boolean containsKitchen, boolean containsLoft, Address address){
+    public void updateReservation(CabinDetail lodgingReservation){
+        super.updateReservation(lodgingReservation);
+
+        this.containsLoft = lodgingReservation.containsLoft;
+        this.containsKitchen = lodgingReservation.containsKitchen;
         //validate parameters
         //Assign values to attributes
     }
@@ -128,15 +132,17 @@ public class CabinDetail extends ReservationDetail {
     public boolean getContainsLoft(){
         return containsLoft;
     }
-    public void setContainsLoft(boolean containsLoft) {
-        this.containsLoft = containsLoft;
+    public void setContainsLoft(boolean loft) {
+        if(roomStatus.equals("draft"));
+        containsLoft = loft;
     }
 
     public boolean getContainsKitchen(){
         return containsKitchen;
     }
-    public void setContainsKitchen(boolean containsKitchen) {
-        this.containsKitchen = containsKitchen;
+    public void setContainsKitchen(boolean kitchen) {
+        if(roomStatus.equals("draft"));
+        containsKitchen = kitchen;
     }
     public Address getAddress(){
         return address;

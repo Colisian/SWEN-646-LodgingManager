@@ -175,7 +175,7 @@ public class CustomerAccount {
 
             for (ReservationDetail reservation : reservationList){
                 if (reservation.getReservationNumber().equals(reservationNumber)){
-                    reservation.setCompleted(true);
+                    reservation.finalizeReservation(true);
                     System.out.println("Reservation" + reservationNumber + "Has been Completed");
                 }
             }

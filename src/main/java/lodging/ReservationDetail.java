@@ -75,42 +75,19 @@ public abstract class ReservationDetail {
     public void saveToFile(String filename) {
         PrintWriter writer = null;
         try {
-            if(this.getClass().getSimpleName().equals("CabinDetail")){
-                writer = new PrintWriter(filename + "res-" + reservationNumber + ".json");
-                writer.println(toString());
-                writer.close();
-            }
-            else if (this.getClass().getSimpleName().equals("HouseDetail")){
-                writer = new PrintWriter(filename + "res-" +reservationNumber + ".json");
-                writer.println(toString());
-                writer.close();
-            }
-            else if (this.getClass().getSimpleName().equals("HotelDetail")){
-                writer = new PrintWriter(filename + "res-" +reservationNumber + ".json");
-                writer.println(toString());
-                writer.close();
-
+            switch (this.getClass().getSimpleName()) {
+                case "CabinDetail", "HouseDetail", "HotelDetail" -> {
+                    writer = new PrintWriter(filename + "res-" + reservationNumber + ".json");
+                    writer.println(toString());
+                    writer.close();
+                }
             }
 
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
-    
 
-    /*
-    public ReservationDetail(String fileName) { //Overloading
-        String line;
-        Scanner sc;
-        try{
-            sc = new Scanner(new File(fileName));
-            line = sc.nextLine();
-            sc.close();
-        } catch (FileNotFoundException e){
-            throw new IllegalLoadException("Reservation", fileName, accountNumber);
-        }
-    }
- */
 
 
     //format and return object data in JSON
@@ -143,6 +120,21 @@ public abstract class ReservationDetail {
     public float calculateTotalPrice() {
         return calculateBasePrice() * nights;
     }
+
+    public void finalizeReservation(boolean b) {
+        if(roomStatus.equals("draft")){
+            roomStatus = "completed";
+        }
+        else
+            throw new IllegalOperationException(accountNumber, reservationNumber, "reservation");
+    }
+    public void cancelReservation() {
+        if(!roomStatus.equals("draft")){
+            throw new IllegalOperationException(accountNumber,reservationNumber,"Reservation");
+        }
+        roomStatus = "cancelled";
+    }
+
 
     //updates the parameters of the room details that all rooms shares
     public void updateReservation(ReservationDetail lodgingReservation){
@@ -180,8 +172,7 @@ public abstract class ReservationDetail {
     public void setCompleted(boolean b) {
     }
 
-    public void cancelReservation() {
-    }
+
 
     public String getReservationNumber() {
         return reservationNumber;

@@ -5,7 +5,7 @@ public class IllegalOperationException extends RuntimeException{
     private String accountNumber;
     private String reservationNumber;
 
-    public IllegalOperationException(String operation, String accountId, String reservationNumber, String message) {
+    public IllegalOperationException(String accountId, String reservationNumber, String message) {
         super(message);
         this.operation = operation;
         this.accountNumber = accountNumber;

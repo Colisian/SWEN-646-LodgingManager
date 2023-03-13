@@ -124,7 +124,7 @@ public class CabinDetail extends ReservationDetail {
         //Assign values to attributes
     }
 
-    public float calculateTotalPrice(){ //Override calculatePrice will take place here if customer chooses a cabin as their default lodging
+    public float calculateBasePrice(){ //Override calculatePrice will take place here if customer chooses a cabin as their default lodging
         //Additional fee of 20 if containsKitchen is true + bathroomCount * 5
         float basePrice = super.calculateBasePrice();
         float pricePerBath = 5.0f;

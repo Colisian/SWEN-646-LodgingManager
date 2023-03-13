@@ -169,14 +169,14 @@ public class CustomerAccount {
     }
 
     // adds the associated reservation that a customer has made to their account
-    public void completeReservation(String reservationNumber){
+    public void finalizeReservation(String reservationNumber){
         boolean reservationFound = reservationExists(reservationNumber);
         if (reservationFound){
 
             for (ReservationDetail reservation : reservationList){
                 if (reservation.getReservationNumber().equals(reservationNumber)){
                     reservation.setCompleted(true);
-                    System.out.println("Reservation" + reservationNumber + "Ha been Completed");
+                    System.out.println("Reservation" + reservationNumber + "Has been Completed");
                 }
             }
         }
@@ -200,7 +200,7 @@ public class CustomerAccount {
         for (ReservationDetail reservationDetail : reservationList) {
             if (reservationDetail.getReservationNumber().equals(reservationNumber)) {
                 res = reservationDetail;
-            } else return res;
+            }
         }
         return res;
     }
@@ -219,13 +219,28 @@ public class CustomerAccount {
     }
 
     public float calculateReservationsPrice(String reservationNumber){
-        float price = Float.parseFloat(null);
+        float price = 0.0f;
         if(reservationExists(reservationNumber)){
             for (ReservationDetail reservationDetail : reservationList) {
-                price = reservationDetail.calculateTotalPrice();
+                price = reservationDetail.calculateBasePrice();
 
             }
         } else throw new IllegalArgumentException("Reservation Prices can not be calculated");
+        return price;
+    }
+
+    public float calculateAllReservationPrice(String reservationNumber) {
+        float price = 0.0f;
+        if(reservationExists(reservationNumber)){
+            for (ReservationDetail reservationDetail : reservationList) {
+                if (reservationDetail.getReservationNumber().equals(reservationNumber)) {
+                    price = reservationDetail.calculateTotalPrice();
+                }
+            }
+            if(!reservationExists(reservationNumber)){
+                throw new IllegalArgumentException("Reservation: " + reservationNumber + " does not exist");
+            }
+        }
         return price;
     }
 
@@ -297,4 +312,6 @@ public class CustomerAccount {
     public boolean hasReservation(String reservationNumber) {
         return false;
     }
+
+
 }

@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
+import static com.sun.tools.javac.code.Lint.LintCategory.PATH;
+
 public class LodgingManager {
 
 
@@ -26,7 +28,7 @@ public class LodgingManager {
         //Validate parameters
         //assign a customerAccount to a reservation
         //create an instance of a reservation
-        accounts = new Vector<CustomerAccount>();
+        accounts = new ArrayList<CustomerAccount>();
         File dir = new File(filePath);
         if(dir.isDirectory()){
             String[] list = dir.list();
@@ -69,6 +71,29 @@ public class LodgingManager {
     }
 
     //iterates over a list of customer accounts and looks for any repeating account based by account number
+
+
+    public void updateReservation(String accountNumber, ReservationDetail lodgingReservation){
+        boolean accountFound = accountExists(accountNumber);
+        //identifies a reservation by its unique number and allows parameters to be adjusted
+        for (CustomerAccount account : accounts) {
+            if (account.getAccountNumber().equals(accountNumber)) {
+                account.updateReservation(lodgingReservation);
+                return;
+            }
+
+        }
+        if (!accountFound)
+            throw new IllegalArgumentException("Account number:" + accountNumber + " does not exist");
+    }
+    public void finalizeReservation( String accountNumber, ReservationDetail lodgingReservation){
+        for (CustomerAccount account : accounts) {
+            if (account.getAccountNumber().equals(accountNumber))
+                account.finalizeReservation(lodgingReservation.getReservationNumber());
+        }
+
+    }
+
     private boolean accountExists(String accountNumber){
         for (CustomerAccount account : accounts) {
             if (account.getAccountNumber().equals(accountNumber)) {
@@ -78,52 +103,67 @@ public class LodgingManager {
         return false;
     }
 
-    public void editReservation(ReservationDetail lodgingReservation){
-        //identifies a reservation by its unique number and allows parameters to be adjusted
-    }
-    public void finalizeReservation( String reservationNumber, String accountNumber){
-        if(finalized){
-            //code to finalize reservation
-        }
-        // identifies a single reservation based off of unique reservation number and deletes them
-        try {
-            // code to finalize the reservation
+    public CustomerAccount getAccount(String accountNumber){
+        CustomerAccount acc = null;
+        for (CustomerAccount account : accounts) {
+            if (account.getAccountNumber().equals(accountNumber))
+                acc = account;
 
-            if (!finalized) {
-                throw new IllegalOperationException("finalize reservation", accountNumber, reservationNumber,
-                        "Reservation cannot be finalized due to violation detected");
-            }
-        } catch (IllegalOperationException e) {
-            System.out.println(e.toString());
         }
-        finalized = true;
+        return acc;
     }
 
-    public void addAccount(CustomerAccount customer){
+    public void addAccount(CustomerAccount account){
         // identifies a new customer account and adds it to the manager.
         //if account already exists exception is thrown
-        if (accountExists(customer.getAccountNumber())){
-            throw new DuplicateObjectException("Account",customer.getAccountNumber());
+        for (CustomerAccount customerAccount : accounts) {
+            if (customerAccount.getAccountNumber().equals(account.getAccountNumber())) {
+                throw new DuplicateObjectException("Manager", account.getAccountNumber());
+            }
         }
+        accounts.add(account);
+    }
+
+    public float calculateBasePrice(String accountNumber, String reservationNumber){
+        float price = 0.0f;
+        for (int i = 0; i < accounts.size(); i++) {
+            if(accounts.get(i).getAccountNumber().equals(accountNumber))
+                price = accounts.get(i).calculateReservationsPrice(reservationNumber);
+
+        } return price;
+    }
+
+    public float calculateAllReservationsPrice(String accountNumber, String reservationNumber){
+        float price = 0.0f;
+        for (int i = 0; i < accounts.size(); i++) {
+            if(accounts.get(i).getAccountNumber().equals(accountNumber))
+
+                price = accounts.get(i).calculateAllReservationPrice(reservationNumber);
+
+        } return price;
     }
 
 
-    public void saveToFile(String filename){
+    public void saveToFile(String accountNumber){
 
         //create or overwrite a file
         //iterate through each reservation made
+        for (int i = 0; i < accounts.size(); i++) {
+            if(accounts.get(i).getAccountNumber().equals(accountNumber)){
+                accounts.get(i).saveToFile(PATH + "\\" + accountNumber);
 
-    }
-
-    public void openFile(String filename) throws IllegalLoadException {
-        //lodging = new lodging.Reservation(filename)
-        try {
-            //code to open a new file
-        } catch (RuntimeException e) {
-            throw new IllegalLoadException("Reservation", filename, "Reservation Number");
+                File file = new  File(PATH + "\\" + accountNumber);
+                if(!file.isDirectory())
+                    file.mkdir();
+            }
+            if(!accountExists(accountNumber)){
+                throw new IllegalArgumentException("Can not find an account with number: " + accountNumber);
+            }
         }
 
     }
+
+
     public LodgingManager(String filename){ //Overloading method to call parameters relating to file management
 
     }
@@ -140,15 +180,7 @@ public class LodgingManager {
     }
 
 
-    public CustomerAccount getAccount(String accountNumber){
-        CustomerAccount temp = null;
-        for (CustomerAccount account : accounts) {
-            if (account.getAccountNumber().equals(accountNumber))
-                temp = account;
 
-        }
-        return temp;
-    }
 
 
 }

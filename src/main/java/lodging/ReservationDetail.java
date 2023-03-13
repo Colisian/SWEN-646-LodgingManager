@@ -2,6 +2,7 @@ package lodging;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
@@ -53,10 +54,10 @@ public abstract class ReservationDetail {
             line = sc.nextLine();
             sc.close();
         } catch (FileNotFoundException e) {
-            throw new IllegalLoadException("Account: ", "reservation.txt" + fileName, "reservation number" + reservationNumber);
+            throw new IllegalLoadException("Account: ", "reservation.txt" + fileName, "account number" + accountNumber);
         }
         catch (Exception e){
-            throw new IllegalLoadException("Reservation", fileName, reservationNumber);
+            throw new IllegalLoadException("Reservation", fileName, accountNumber);
         }
         String reservationNumberTag = line.substring(line.indexOf("<reservationNumber>") + 19, line.indexOf("</reservationNumber>"));
         String accountNumberTag = line.substring(line.indexOf("<accountNumber>") + 15, line.indexOf("</accountNumber>"));
@@ -71,7 +72,30 @@ public abstract class ReservationDetail {
 
     }
 
+    public void saveToFile(String filename) {
+        PrintWriter writer = null;
+        try {
+            if(this.getClass().getSimpleName().equals("CabinDetail")){
+                writer = new PrintWriter(filename + "res-" + reservationNumber + ".json");
+                writer.println(toString());
+                writer.close();
+            }
+            else if (this.getClass().getSimpleName().equals("HouseDetail")){
+                writer = new PrintWriter(filename + "res-" +reservationNumber + ".json");
+                writer.println(toString());
+                writer.close();
+            }
+            else if (this.getClass().getSimpleName().equals("HotelDetail")){
+                writer = new PrintWriter(filename + "res-" +reservationNumber + ".json");
+                writer.println(toString());
+                writer.close();
 
+            }
+
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
     
 
     /*
@@ -227,8 +251,7 @@ public abstract class ReservationDetail {
         this.roomStatus = roomStatus;
     }
 
-    public void saveToFile(String filename) {
-    }
+
 };
 
 

@@ -3,13 +3,15 @@ package lodging;
 public class IllegalLoadException extends RuntimeException{
     private String fileType;
     private String fileName;
-
     private String idNumber;
+    private String message;
     public IllegalLoadException(String fileType, String fileName, String idNumber){
-        super(" Error loading: " + fileType + " ,File: " + fileName + "for account" + idNumber);
+        super("Error loading: " + fileType + " ,File: " + fileName + "for account" + idNumber);
         this.fileType = fileType;
         this.fileName = fileName;
         this.idNumber = idNumber;
+
+        message = "Error loading: " + fileType + " ,File: " + fileName + "for account" + idNumber;
     }
 
     public String getFileType() {
@@ -25,6 +27,6 @@ public class IllegalLoadException extends RuntimeException{
     }
 
     public String toString(){
-        return "Illegal Load Exception, " + getMessage() ;
+        return "Illegal Load Exception, " + message;
     }
 }

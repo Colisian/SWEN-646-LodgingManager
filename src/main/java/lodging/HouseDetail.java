@@ -13,11 +13,10 @@ public class HouseDetail extends ReservationDetail {
 
     private int numberOfFloors; // amount of floors in the house
 
-    private String generateReservationNumber;
     private Address address;
 
 
-    public HouseDetail(int numFloors, Address logdingAddress, String accountNum, int numNights, Date checkInStart, Date checkOutEnd,
+    public HouseDetail(int numFloors, Address logdingAddress, String generateReservationNumber,String accountNum, int numNights, Date checkInStart, Date checkOutEnd,
                        int bedNum, int sqFt, double bathroom, int bedRoomNum,String roomStat) throws IOException, JSONException {
         super(logdingAddress, accountNum, numNights, checkInStart, checkOutEnd, bedNum,
                 sqFt, bathroom ,roomStat, bedRoomNum);
@@ -114,10 +113,10 @@ public class HouseDetail extends ReservationDetail {
     }
 
     //create and return a copy of the object
-    public HouseDetail clone() throws CloneNotSupportedException{
+    public HouseDetail clone(){
         HouseDetail res = null;
         try {
-            res = new HouseDetail(this.numberOfFloors, this.address,
+            res = new HouseDetail(this.numberOfFloors, this.address, this.reservationNumber,
                     this.accountNumber, this.nights, this.checkIn, this.checkOut, this.bedCount, this.squareFootage, this.bathroomCount,
                     this.bedRoomCount, this.roomStatus);
         } catch (IOException e) {
@@ -137,13 +136,6 @@ public class HouseDetail extends ReservationDetail {
             throw new IllegalStateException("Reservation is in draft status");
     }
 
-    public String getGenerateReservationNumber() {
-        return generateReservationNumber;
-    }
-
-    public void setGenerateReservationNumber(String generateReservationNumber) {
-        this.generateReservationNumber = generateReservationNumber;
-    }
 
     public Address getAddress(){
         return address;

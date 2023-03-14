@@ -11,12 +11,10 @@ import java.util.Scanner;
 public class HotelDetail extends ReservationDetail{
 
     private boolean containsKitchenette; // True or false on if the BHotel room has a kitchenette
-
-    private String generateReservationNumber;
     private Address address;
 
 
-    public HotelDetail(boolean kitchenette, Address logdingAddress, String reservationNum, String accountNum, int numNights, Date checkInStart, Date checkOutEnd,
+    public HotelDetail(boolean kitchenette, Address logdingAddress, String generateReservationNumber, String accountNum, int numNights, Date checkInStart, Date checkOutEnd,
                        int bedNum, int sqFt, double bathroom,String roomStat, int bedRoomNum) throws IOException {
         super(logdingAddress, accountNum, numNights, checkInStart, checkOutEnd, bedNum,
                 sqFt, bathroom ,roomStat, bedRoomNum);
@@ -118,14 +116,18 @@ public class HotelDetail extends ReservationDetail{
 
     }
     //create and return a copy of the object
-    public HotelDetail clone() throws CloneNotSupportedException {
+    public HotelDetail clone() {
+        HotelDetail res = null;
+        try {
+            res = new HotelDetail(this.containsKitchenette,this.address, this.reservationNumber, this.accountNumber, this.nights,
+                    (Date)this.checkIn,(Date)this.checkOut, this.bedCount, this.squareFootage, this.bathroomCount, this.roomStatus, this.bedRoomCount );
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
-        // lodging = new lodging.HotelDetail(this.containsKitchenette...)
-        return (HotelDetail) super.clone();
-    }
-    public HotelDetail clone(String line) throws CloneNotSupportedException{
-        return (HotelDetail) super.clone();
-    }
+        return res;
+    };
+
     public boolean getContainsKitchenette(){
         return containsKitchenette;
     }

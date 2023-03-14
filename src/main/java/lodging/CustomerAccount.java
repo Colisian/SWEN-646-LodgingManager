@@ -90,10 +90,10 @@ public class CustomerAccount {
                     }
                 }
             }
-            //String line;
-           // Scanner sc = new Scanner(new File(directoryPath));
-            //line = sc.nextLine();
-            //sc.close();
+            String line;
+            Scanner sc = new Scanner(new File(directoryPath));
+            line = sc.nextLine();
+            sc.close();
 
             //int accountNameOpenTagPos = line.indexOf("<>")
         } catch (Exception e) {

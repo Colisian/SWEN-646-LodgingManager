@@ -156,10 +156,8 @@ public abstract class ReservationDetail {
     //create and return copy of object
 
     //create and return copy of overloaded method
-    public ReservationDetail clone(String line) throws CloneNotSupportedException {
+    abstract public ReservationDetail clone();
         // return new lodging.RoomDetail(this.reservationNumber...)
-        return (ReservationDetail) super.clone();
-    }
     public int getNights() { //
         return nights;
     }
@@ -169,9 +167,6 @@ public abstract class ReservationDetail {
             throw new IllegalArgumentException("Can not have less than one night");
         }
     }
-    public void setCompleted(boolean b) {
-    }
-
 
 
     public String getReservationNumber() {

@@ -17,7 +17,7 @@ public class CabinDetail extends ReservationDetail {
     private Address address;
 
 
-    public CabinDetail(boolean kitchen, boolean loft, Address logdingAddress, String reservationNum, String accountNum, int numNights, Date checkInStart, Date checkOutEnd,
+    public CabinDetail(boolean kitchen, boolean loft, Address logdingAddress, String generateReservationNum, String accountNum, int numNights, Date checkInStart, Date checkOutEnd,
                        int bedNum, int sqFt, double bathroom, int bedRoomNum ,String roomStat) throws IOException, JSONException {
         super(logdingAddress, accountNum, numNights, checkInStart, checkOutEnd, bedNum,
                 sqFt, bathroom ,roomStat, bedRoomNum);

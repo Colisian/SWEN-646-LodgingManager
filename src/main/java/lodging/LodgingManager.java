@@ -18,7 +18,7 @@ public class LodgingManager {
 
     private List<ReservationDetail> lodgingReservations = new ArrayList<>();
 
-    private String filePath = "Local Drive (C:/swen-646_LodgingManager/accounts";
+    private String filePath = "Local Drive C:/swen-646_LodgingManager/accounts";
 
     private boolean finalized;
 
@@ -86,11 +86,18 @@ public class LodgingManager {
         if (!accountFound)
             throw new IllegalArgumentException("Account number:" + accountNumber + " does not exist");
     }
+
+
     public void finalizeReservation( String accountNumber, ReservationDetail lodgingReservation){
+        //Loop through reservations in array of CustomerAccount objects.
+        // When finds a matching account
+        boolean accountFound = accountExists(accountNumber);
         for (CustomerAccount account : accounts) {
             if (account.getAccountNumber().equals(accountNumber))
                 account.finalizeReservation(lodgingReservation.getReservationNumber());
-        }
+                accountFound = true;
+        } if(!accountFound)
+            throw new IllegalArgumentException("Can not finalize this reservation for account " + accountNumber);
 
     }
 
@@ -126,21 +133,23 @@ public class LodgingManager {
 
     public float calculateBasePrice(String accountNumber, String reservationNumber){
         float price = 0.0f;
-        for (int i = 0; i < accounts.size(); i++) {
-            if(accounts.get(i).getAccountNumber().equals(accountNumber))
-                price = accounts.get(i).calculateReservationsPrice(reservationNumber);
+        for (CustomerAccount account : accounts) {
+            if (account.getAccountNumber().equals(accountNumber))
+                price = account.calculateReservationsPrice(reservationNumber);
 
-        } return price;
+        }
+        return price;
     }
 
     public float calculateAllReservationsPrice(String accountNumber, String reservationNumber){
         float price = 0.0f;
-        for (int i = 0; i < accounts.size(); i++) {
-            if(accounts.get(i).getAccountNumber().equals(accountNumber))
+        for (CustomerAccount account : accounts) {
+            if (account.getAccountNumber().equals(accountNumber))
 
-                price = accounts.get(i).calculateAllReservationPrice(reservationNumber);
+                price = account.calculateAllReservationPrice(reservationNumber);
 
-        } return price;
+        }
+        return price;
     }
 
 

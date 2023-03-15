@@ -17,9 +17,9 @@ public abstract class ReservationDetail {
 
     protected Date checkOut;
 
-    protected int bedRoomCount;
+    protected int bedRoomCount = 1;
 
-    protected int bedCount;
+    protected int bedCount = 2;
 
     protected int squareFootage;
 
@@ -27,7 +27,7 @@ public abstract class ReservationDetail {
 
     protected String roomType;
 
-    protected double bathroomCount;
+    protected double bathroomCount = 1;
 
 
     //Above parameters have set and get methods so the appropriate lodging that fits the criteria of the customer can be identified

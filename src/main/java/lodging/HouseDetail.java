@@ -76,7 +76,7 @@ public class HouseDetail extends ReservationDetail {
         } catch (FileNotFoundException e){
             throw new IllegalLoadException("House Reservation", fileName, accountNumber);
         }
-        numberOfFloors = Integer.parseInt(line.substring(line.indexOf("<numberOfFloors>")+ 16, line.indexOf("</numberOfFloors>")));
+       int numberOfFloorsTag = Integer.parseInt(line.substring(line.indexOf("<numberOfFloors>")+ 16, line.indexOf("</numberOfFloors>")));
 
     }
 

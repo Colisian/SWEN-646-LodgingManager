@@ -20,7 +20,7 @@ public class HotelDetail extends ReservationDetail{
                 sqFt, bathroom ,roomStat, bedRoomNum);
 
         if(bedRoomCount > 1 || bathroomCount > 1 || bedCount != 2 ){
-            throw new IllegalArgumentException("Hotels only have single bedrooom, single bathroom and two bed options");
+            throw new IllegalArgumentException("Hotels only have single bedroom, single bathroom or two bed options");
         }
 
         //call parent constructor from RoomDetail
@@ -58,7 +58,7 @@ public class HotelDetail extends ReservationDetail{
         putInFile.put("bedroomCount",bedRoomCount);
         putInFile.put("roomStatus",roomStatus);
 
-        File accountInfo = new File(accountPath + "|" + generateReservationNumber + ".json");
+        File accountInfo = new File(accountPath + "\\" + generateReservationNumber + ".json");
         accountInfo.createNewFile();
         BufferedWriter writer = new BufferedWriter( new FileWriter(accountInfo.getAbsolutePath()));
         writer.write(putInFile.toString());
@@ -78,7 +78,7 @@ public class HotelDetail extends ReservationDetail{
         } catch (FileNotFoundException e) {
             throw new IllegalLoadException(fileName, accountNumber, "Hotel Reservation");
         }
-        containsKitchenette = Boolean.parseBoolean(line.substring(line.indexOf("<containsKitchenette>") + 21, line.indexOf("</containsKitchenette>")));
+       boolean containsKitchenetteTag = Boolean.parseBoolean(line.substring(line.indexOf("<containsKitchenette>") + 21, line.indexOf("</containsKitchenette>")));
 
     }
 

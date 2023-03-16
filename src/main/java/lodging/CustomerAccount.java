@@ -28,22 +28,22 @@ public class CustomerAccount {
     //Checks each reservation that is associated with the customer account
 
 
-    public CustomerAccount(String accountName, String accountNumber, Address mailingAddress,
-                           String phoneNumber, String email, String reservationNumber) throws JSONException, IOException {
+    public CustomerAccount(String accountNumber, Address mailingAddress,
+                           String phoneNumber, String email) throws JSONException, IOException {
         //validate parameters
         //Generate account number
         Random rnd = new Random();
         int number = rnd.nextInt(999999999);
         newAccountNumber = String.valueOf(number);
-        String generateAccountNumber = filePath + "A" + newAccountNumber;
-        new File(generateAccountNumber).mkdir();
+        String generateAccountPath = filePath + "A" + newAccountNumber;
+        new File(generateAccountPath).mkdir();
 
         JSONObject putInFile = new JSONObject();
         putInFile.put("address",address);
         putInFile.put("phoneNumber",phoneNumber);
         putInFile.put("emailAddress",emailAddress);
 
-        File accountInfo = new File(generateAccountNumber + "-" + "accountInfo.json");
+        File accountInfo = new File(generateAccountPath + "-" + "accountInfo.json");
         accountInfo.createNewFile();
         BufferedWriter writer = new BufferedWriter( new FileWriter(accountInfo.getAbsolutePath()));
         writer.write(putInFile.toString());

@@ -95,7 +95,7 @@ public class LodgingManager {
         for (CustomerAccount account : accounts) {
             if (account.getAccountNumber().equals(accountNumber))
                 account.finalizeReservation(lodgingReservation.getReservationNumber());
-                accountFound = true;
+            accountFound = true;
         } if(!accountFound)
             throw new IllegalArgumentException("Can not finalize this reservation for account " + accountNumber);
 
@@ -157,15 +157,15 @@ public class LodgingManager {
 
         //create or overwrite a file
         //iterate through each reservation made
-        for (int i = 0; i < accounts.size(); i++) {
-            if(accounts.get(i).getAccountNumber().equals(accountNumber)){
-                accounts.get(i).saveToFile(PATH + "\\" + accountNumber);
+        for (CustomerAccount account : accounts) {
+            if (account.getAccountNumber().equals(accountNumber)) {
+                account.saveToFile(PATH + "\\" + accountNumber);
 
-                File file = new  File(PATH + "\\" + accountNumber);
-                if(!file.isDirectory())
+                File file = new File(PATH + "\\" + accountNumber);
+                if (!file.isDirectory())
                     file.mkdir();
             }
-            if(!accountExists(accountNumber)){
+            if (!accountExists(accountNumber)) {
                 throw new IllegalArgumentException("Can not find an account with number: " + accountNumber);
             }
         }

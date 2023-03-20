@@ -110,7 +110,7 @@ public class CustomerAccount {
             }
             scanner.close();
         } catch (FileNotFoundException e) {
-            throw new IllegalLoadException("Account", "accounts.json", "account number");
+            throw new IllegalLoadException(fileName, accountNumber, "account number");
         }
         return null;
     }

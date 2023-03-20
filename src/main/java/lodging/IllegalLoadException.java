@@ -3,9 +3,9 @@ package lodging;
 public class IllegalLoadException extends RuntimeException{
 
     private String message;
-    public IllegalLoadException(String fileType, String fileName, String idNumber){
-        super("Error loading: " + fileType + " ,File: " + fileName + " for account " + idNumber);
-        message = "Error loading: " + fileType + " ,File: " + fileName + " for account " + idNumber;
+    public IllegalLoadException(String fileName, String accountID, String error){
+        super("Account# " + accountID + ": The file " + fileName + " could not be parsed. There was an issue with the " + error + " file.");;
+        message = "Account# " + accountID + ": The file " + fileName + " could not be parsed. There was an issue with the " + error + " file.";
     }
 
 

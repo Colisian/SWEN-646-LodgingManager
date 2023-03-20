@@ -90,7 +90,7 @@ public class CabinDetail extends ReservationDetail {
             line = sc.nextLine();
             sc.close();
         } catch (FileNotFoundException e){
-            throw new IllegalLoadException("Cabin Reservation", filename, accountNumber);
+            throw new IllegalLoadException(filename, accountNumber, "Cabin Reservation");
         }
     }
 

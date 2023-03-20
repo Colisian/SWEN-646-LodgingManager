@@ -54,11 +54,9 @@ public abstract class ReservationDetail {
             line = sc.nextLine();
             sc.close();
         } catch (FileNotFoundException e) {
-            throw new IllegalLoadException(fileName, "reservation.txt//" + fileName, " Reservation");
+            throw new IllegalLoadException(fileName, reservationNumber , " Reservation");
         }
-        catch (Exception e){
-            throw new IllegalLoadException(fileName, "reservation.txt//" + fileName, " Reservation");
-        }
+
         String reservationNumberTag = line.substring(line.indexOf("<reservationNumber>") + 19, line.indexOf("</reservationNumber>"));
         String accountNumberTag = line.substring(line.indexOf("<accountNumber>") + 15, line.indexOf("</accountNumber>"));
         int nightsTag = Integer.parseInt(line.substring(line.indexOf("<nights>") + 7, line.indexOf("</nights>")));

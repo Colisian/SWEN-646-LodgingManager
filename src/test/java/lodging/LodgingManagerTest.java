@@ -79,6 +79,10 @@ public class LodgingManagerTest {
         System.out.println(HotelTest2.toString());
         System.out.println(HotelTest3.toString());
 
+        HotelTest.saveToFile("");
+        System.out.println("Saved to Directory");
+
+
     }
     public void testHotelFile(){
         System.out.println("Setting up Path");
@@ -103,6 +107,9 @@ public class LodgingManagerTest {
         System.out.println(CabinTest.toString());
         System.out.println(CabinTest2.toString());
         System.out.println(CabinTest3.toString());
+
+        CabinTest.saveToFile("");
+        System.out.println("Saved to Directory");
 
 
     }
@@ -129,6 +136,11 @@ public class LodgingManagerTest {
         System.out.println(HouseTest.toString());
         System.out.println(HouseTest2.toString());
         System.out.println(HouseTest3.toString());
+
+        HouseTest.saveToFile("");
+        System.out.println("Saved to Directory");
+
+
 
     }
 

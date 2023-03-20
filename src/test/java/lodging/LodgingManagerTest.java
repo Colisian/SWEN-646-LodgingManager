@@ -48,6 +48,14 @@ public class LodgingManagerTest {
     int testFloors = 2;
     int testFloors2 = 3;
 
+    public void testAddressMethod(){
+        System.out.println("Data parsing");
+        System.out.println(testAddress1.toString());
+        System.out.println(testAddress2.toString());
+        System.out.println(testAddress3.toString());
+
+    }
+
 
     public void testReservationClass() throws ParseException, IOException {
         testHotelRes();
@@ -55,9 +63,7 @@ public class LodgingManagerTest {
         testCabRes2();
         testCabinFile();
         testHOURes3();
-        testHouFilename();
-
-
+        testHouFile();
     }
 
 
@@ -80,12 +86,12 @@ public class LodgingManagerTest {
         System.out.println(HotelTest3.toString());
 
         HotelTest.saveToFile("");
-        System.out.println("Saved to Directory");
+        System.out.println("Saved to Hotel Directory");
 
 
     }
     public void testHotelFile(){
-        System.out.println("Setting up Path");
+        System.out.println("Setting up Hotel Path");
         HotelDetail HotelFilename = new HotelDetail("res-"+testReservationNum1+".txt");
         System.out.println(HotelFilename.toString());
     }
@@ -93,7 +99,7 @@ public class LodgingManagerTest {
     public void testCabRes2() throws ParseException, IOException {
         SimpleDateFormat formatter = new SimpleDateFormat("MM/DD/yyyy");
 
-        System.out.println("Hotel Reservation Test");
+        System.out.println("Cabin Reservation Test");
         CabinDetail CabinTest = new CabinDetail(testKitchen, testLoft,testAddress1, testReservationNum7, testAccountNum1,
                 testNights, formatter.parse("01/05/2022"), formatter.parse("01/09/2022"),testBed, testSqFt, testBathRoom,
                 testBedroom, "draft");
@@ -114,7 +120,7 @@ public class LodgingManagerTest {
 
     }
     public void testCabinFile(){
-        System.out.println("Setting up Path");
+        System.out.println("Setting up Cabin Path");
         CabinDetail CabinFilename = new CabinDetail("res-"+testReservationNum7+".txt");
         System.out.println(CabinFilename.toString());
     }
@@ -122,7 +128,7 @@ public class LodgingManagerTest {
     public void testHOURes3() throws ParseException, IOException {
         SimpleDateFormat formatter = new SimpleDateFormat("MM/DD/yyyy");
 
-        System.out.println("Hotel Reservation Test");
+        System.out.println("House Reservation Test");
         HouseDetail HouseTest = new HouseDetail(testFloors, testAddress1, testReservationNum4, testAccountNum1,
                 testNights, formatter.parse("01/05/2022"), formatter.parse("01/09/2022"),testBed, testSqFt, testBathRoom,
                 testBedroom, "draft");
@@ -144,7 +150,7 @@ public class LodgingManagerTest {
 
     }
 
-    public void testHouFilename(){
+    public void testHouFile(){
         System.out.println("Setting up Path");
         HouseDetail HouseFilename = new HouseDetail("res-" +testReservationNum4+".txt" );
         System.out.println(HouseFilename.toString());
@@ -198,7 +204,11 @@ public class LodgingManagerTest {
     }
 
     public static void main(String[] args) throws IOException, ParseException {
-        
+        LodgingManagerTest driver = new LodgingManagerTest();
+        driver.testAccountClass();
+        driver.testAddressMethod();;
+        driver.testReservationClass();
+        driver.testManager();
         
     }
 

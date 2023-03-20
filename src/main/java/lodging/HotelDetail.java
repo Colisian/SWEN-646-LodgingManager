@@ -22,7 +22,7 @@ public class HotelDetail extends ReservationDetail{
         super(logdingAddress, accountNum, numNights, checkInStart, checkOutEnd, bedNum,
                 sqFt, bathroom ,roomStat, bedRoomNum);
 
-        if(bedRoomCount > 1 || bathroomCount > 1 || bedCount != 2 ){
+        if(bedRoomCount < 1 || bathroomCount < 1 || bedCount < 2 ){
             throw new IllegalArgumentException("Hotels only have single bedroom, single bathroom or two bed options");
         }
 
@@ -61,12 +61,12 @@ public class HotelDetail extends ReservationDetail{
         putInFile.put("bedroomCount",bedRoomCount);
         putInFile.put("roomStatus",roomStatus);
 
-        File accountInfo = new File(accountPath + "\\" + generateReservationNumber + ".json");
-        accountInfo.createNewFile();
-        BufferedWriter writer = new BufferedWriter( new FileWriter(accountInfo.getAbsolutePath()));
-        writer.write(putInFile.toString());
-        writer.close();
-        System.out.println("Hotel Reservation Number: " + generateReservationNumber);
+       // File accountInfo = new File(accountPath + "\\" + generateReservationNumber + ".json");
+        //accountInfo.createNewFile();
+        //BufferedWriter writer = new BufferedWriter( new FileWriter(accountInfo.getAbsolutePath()));
+        //writer.write(putInFile.toString());
+        //writer.close();
+        //System.out.println("Hotel Reservation Number: " + generateReservationNumber);
     }
 
     public HotelDetail(String fileName){ //Overloading to parse and extract separate parameters from above constructor

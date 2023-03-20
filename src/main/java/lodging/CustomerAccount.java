@@ -42,12 +42,12 @@ public class CustomerAccount {
         putInFile.put("phoneNumber",phoneNumber);
         putInFile.put("emailAddress",emailAddress);
 
-        File accountInfo = new File(generateAccountPath + "-" + "accountInfo.json");
-        accountInfo.createNewFile();
-        BufferedWriter writer = new BufferedWriter( new FileWriter(accountInfo.getAbsolutePath()));
-        writer.write(putInFile.toString());
-        writer.close();
-        System.out.println("New Account created: A" + newAccountNumber);
+       // File accountInfo = new File(generateAccountPath + "-" + "accountInfo.json");
+       // accountInfo.createNewFile();
+       // BufferedWriter writer = new BufferedWriter( new FileWriter(accountInfo.getAbsolutePath()));
+       // writer.write(putInFile.toString());
+       // writer.close();
+       // System.out.println("New Account created: A" + newAccountNumber);
 
         this.accountNumber = accountNumber;
         this.address = mailingAddress;

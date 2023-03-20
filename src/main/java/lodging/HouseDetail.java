@@ -56,12 +56,12 @@ public class HouseDetail extends ReservationDetail {
         putInFile.put("bedroomCount",bedRoomCount);
         putInFile.put("roomStatus",roomStatus);
 
-        File accountInfo = new File(accountPath + "|" + generateReservationNumber + ".json");
-        accountInfo.createNewFile();
-        BufferedWriter writer = new BufferedWriter( new FileWriter(accountInfo.getAbsolutePath()));
-        writer.write(putInFile.toString());
-        writer.close();
-        System.out.println("House Reservation Number: " + generateReservationNumber);
+        //File accountInfo = new File(accountPath + "|" + generateReservationNumber + ".json");
+        //accountInfo.createNewFile();
+        //BufferedWriter writer = new BufferedWriter( new FileWriter(accountInfo.getAbsolutePath()));
+        //writer.write(putInFile.toString());
+        //writer.close();
+        //System.out.println("House Reservation Number: " + generateReservationNumber);
     }
 
     public HouseDetail(String fileName) {

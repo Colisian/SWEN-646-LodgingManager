@@ -59,12 +59,12 @@ public class CabinDetail extends ReservationDetail {
         putInFile.put("bedroomCount",bedRoomCount);
         putInFile.put("roomStatus",roomStatus);
 
-        File accountInfo = new File(accountPath + "|" + generateReservationNum + ".json");
-        accountInfo.createNewFile();
-        BufferedWriter writer = new BufferedWriter(new FileWriter(accountInfo.getAbsolutePath()));
-        writer.write(putInFile.toString());
-        writer.close();
-        System.out.println("Cabin Reservation: " + generateReservationNum);
+       // File accountInfo = new File(accountPath + "|" + generateReservationNum + ".json");
+       // accountInfo.createNewFile();
+       // BufferedWriter writer = new BufferedWriter(new FileWriter(accountInfo.getAbsolutePath()));
+       // writer.write(putInFile.toString());
+       // writer.close();
+       // System.out.println("Cabin Reservation: " + generateReservationNum);
 
     }
 

@@ -67,23 +67,22 @@ public class CustomerAccount {
             String reservationRoomType;
             File[] reservationDirectory = dir.listFiles();
 
-            for(int i = 0; i < reservationDirectory.length; i++){
-                dir = reservationDirectory[i];
-                if(dir.isDirectory()){
+            assert reservationDirectory != null;
+            for (File value : reservationDirectory) {
+                dir = value;
+                if (dir.isDirectory()) {
                     reservation = dir;
                     reservationFiles = reservation.list();
 
-                    for (int j = 0 ; j < reservationFiles.length; j++){
-                        reservationFile = reservationFiles[j];
-                        reservationRoomType = reservationFile.substring(0,3);
-                        if(reservationRoomType.equals("HOU")){
+                    assert reservationFiles != null;
+                    for (String file : reservationFiles) {
+                        reservationFile = file;
+                        reservationRoomType = reservationFile.substring(0, 3);
+                        if (reservationRoomType.equals("HOU")) {
                             reservationList.add((ReservationDetail) new HouseDetail(reservationFile));
-                        }
-                        else if(reservationRoomType.equals("HOT")){
+                        } else if (reservationRoomType.equals("HOT")) {
                             reservationList.add((ReservationDetail) new HotelDetail(reservationFile));
-                        }
-
-                        else {
+                        } else {
                             reservationList.add((ReservationDetail) new CabinDetail(reservationFile));
                         }
                     }

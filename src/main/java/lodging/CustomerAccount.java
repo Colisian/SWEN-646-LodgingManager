@@ -1,10 +1,10 @@
 package lodging;
 
-import java.io.*;
-import java.util.*;
-
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.*;
+import java.util.*;
 
 public class CustomerAccount {
 
@@ -13,7 +13,7 @@ public class CustomerAccount {
 
     private String accountNumber;
 
-    private String newAccountNumber;
+    private static String newAccountNumber;
 
     private String phoneNumber;
 
@@ -28,8 +28,7 @@ public class CustomerAccount {
     //Checks each reservation that is associated with the customer account
 
 
-    public CustomerAccount(String accountNumber, Address mailingAddress,
-                           String phoneNumber, String email) throws JSONException, IOException {
+    public CustomerAccount( String accountNumber, Address mailingAddress, String phoneNumber, String email) throws JSONException, IOException {
         //validate parameters
         //Generate account number
         Random rnd = new Random();
@@ -296,7 +295,7 @@ public class CustomerAccount {
         return reservationNumber;
     }
 
-    public String getNewAccountNumber() {
+    public static String getNewAccountNumber() {
         return newAccountNumber;
     }
     public String getFilePath() {

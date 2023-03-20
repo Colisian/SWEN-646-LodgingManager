@@ -25,9 +25,9 @@ public class HouseDetail extends ReservationDetail {
         //Validate parameters
         //Assign values to House specific attributes
 
-        Random random = new Random();
-        int resNumber = random.nextInt(99999999);
-        generateReservationNumber = "HOU" + String.valueOf(resNumber);
+        //Random random = new Random();
+        //int resNumber = random.nextInt(99999999);
+        //generateReservationNumber = "HOU" + String.valueOf(resNumber);
 
         reservationNumber = generateReservationNumber;
         address = logdingAddress;

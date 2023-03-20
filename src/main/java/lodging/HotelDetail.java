@@ -10,11 +10,14 @@ import java.util.Scanner;
 
 public class HotelDetail extends ReservationDetail{
 
+
+    public static String getReservationNumber;
+    private String reservationNumber;
     private boolean containsKitchenette; // True or false on if the BHotel room has a kitchenette
     private Address address;
 
 
-    public HotelDetail(boolean kitchenette, Address logdingAddress, String generateReservationNumber, String accountNum, int numNights, Date checkInStart, Date checkOutEnd,
+    public HotelDetail(boolean kitchenette, Address logdingAddress, String generateReservationNumber,String accountNum, int numNights, Date checkInStart, Date checkOutEnd,
                        int bedNum, int sqFt, double bathroom,String roomStat, int bedRoomNum) throws IOException {
         super(logdingAddress, accountNum, numNights, checkInStart, checkOutEnd, bedNum,
                 sqFt, bathroom ,roomStat, bedRoomNum);
@@ -26,9 +29,9 @@ public class HotelDetail extends ReservationDetail{
         //call parent constructor from RoomDetail
         //Validate parameters
         //Assign values to House specific attributes
-        Random random = new Random();
-        int resNumber = random.nextInt(99999999);
-        generateReservationNumber = "HOT" + String.valueOf(resNumber);
+        //Random random = new Random();
+        //int resNumber = random.nextInt(99999999);
+        //generateReservationNumber = "HOT" + String.valueOf(resNumber);
 
         reservationNumber = generateReservationNumber;
         address = logdingAddress;
@@ -82,6 +85,8 @@ public class HotelDetail extends ReservationDetail{
 
     }
 
+
+
     public String toString(){
         SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy");
         //return Hotel details in JSON format
@@ -119,7 +124,7 @@ public class HotelDetail extends ReservationDetail{
     public HotelDetail clone() {
         HotelDetail res = null;
         try {
-            res = new HotelDetail(this.containsKitchenette,this.address, this.reservationNumber, this.accountNumber, this.nights,
+            res = new HotelDetail(this.containsKitchenette,this.address, this.reservationNumber,this.accountNumber, this.nights,
                     (Date)this.checkIn,(Date)this.checkOut, this.bedCount, this.squareFootage, this.bathroomCount, this.roomStatus, this.bedRoomCount );
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -142,5 +147,12 @@ public class HotelDetail extends ReservationDetail{
 
     public void setAddress(Address address) {
         this.address = address;
+    }
+
+    public String getReservationNumber() {
+        return reservationNumber;
+    }
+    public void setReservationNumber(String generateReservationNumber) {
+        this.reservationNumber = generateReservationNumber;
     }
 }

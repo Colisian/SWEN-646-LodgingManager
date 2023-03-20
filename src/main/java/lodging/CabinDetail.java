@@ -25,9 +25,9 @@ public class CabinDetail extends ReservationDetail {
         //call parent constructor from RoomDetail
         //Validate parameters
         //Assign values to attributes
-        Random random = new Random();
-        int resNumber = random.nextInt(99999999);
-        generateReservationNum = "CAB" + String.valueOf(resNumber);
+        //Random random = new Random();
+        //int resNumber = random.nextInt(99999999);
+        //generateReservationNum = "CAB" + String.valueOf(resNumber);
 
         reservationNumber = generateReservationNum;
         address = logdingAddress;

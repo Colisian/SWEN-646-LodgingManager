@@ -221,9 +221,6 @@ public class LodgingManagerTest {
 System.out.println("");
     }
 
-    private void testAccount3() {
-    }
-
 
     public static void main(String[] args) throws IOException, ParseException {
         LodgingManagerTest driver = new LodgingManagerTest();

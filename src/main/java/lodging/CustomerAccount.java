@@ -100,6 +100,8 @@ public class CustomerAccount {
 
     }
 
+
+    //Reads data from a file using a scanner object
     public static CustomerAccount loadFromFile(String fileName, String accountNumber) throws IllegalLoadException {
         try {
             File file = new File(fileName);
@@ -108,7 +110,7 @@ public class CustomerAccount {
                 String line = scanner.nextLine();
             }
             scanner.close();
-        } catch (FileNotFoundException e) {
+        } catch (FileNotFoundException e) { //if file is not found will throw a file not found exception
             throw new IllegalLoadException(fileName, accountNumber, "account number");
         }
         return null;

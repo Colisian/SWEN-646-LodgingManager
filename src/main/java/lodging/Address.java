@@ -15,15 +15,7 @@ public class Address {
     }
 
 
-    //Create and return a copy of the object
-    /*
-    public Address clone() throws CloneNotSupportedException{
-        Address add = new Address(this.street, this.city, this.state,this.zipCode);
-        return add;
-        //return new lodging.Address(this.street, this.city, this.state, this.zipCode)
-        //return (Address) super.clone();
-    }
-     */
+    //indexOf() method is used to find the starting position of each tag in the 'line' string and assigns it to street.
     public Address(String line) throws CloneNotSupportedException{ //Creates and returns copy of object with line parameter
         street = line.substring(line.indexOf("<street>") + 8, line.indexOf("</street>"));
         city = line.substring(line.indexOf("<city>") + 6, line.indexOf("</city"));

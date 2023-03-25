@@ -60,7 +60,7 @@ public class LodgingManager {
             }
     }
 
-
+    //iterates over a list of customer accounts and looks for any repeating account based by account number
     private boolean reservationExists(String reservationNumber) {
         for (ReservationDetail lodgingReservation : lodgingReservations) {
             if(lodgingReservation.getReservationNumber().equals(reservationNumber)){
@@ -70,8 +70,9 @@ public class LodgingManager {
         return false;
     }
 
-    //iterates over a list of customer accounts and looks for any repeating account based by account number
 
+//Checks if the specific account number exists throughout the list of available numbers
+//Used enhanced for loop sense design constraints had no mention of maximizing preformance
 
     public void updateReservation(String accountNumber, ReservationDetail lodgingReservation){
         boolean accountFound = accountExists(accountNumber);

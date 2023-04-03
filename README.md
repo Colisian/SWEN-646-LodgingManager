@@ -22,19 +22,19 @@ Polymorphism is used to enable the system to work with different room types with
 
 The project is divided into multiple classes, each responsible for a specific aspect of the Lodging Manager program. The main classes are:
 
-**'Address':**
+- **'Address':**
 
-**'CustomerAccount':**
+- **'CustomerAccount':**
 
-**'HotelDetail':**
+- **'HotelDetail':**
 
-**'HouseDetail':**
+- **'HouseDetail':**
 
-**'CabinDetail':**
+- **'CabinDetail':**
 
-**'ReservationDetail':**
+- **'ReservationDetail':**
 
-**'LodgingManager':** 
+- **'LodgingManager':** 
 
 
 
